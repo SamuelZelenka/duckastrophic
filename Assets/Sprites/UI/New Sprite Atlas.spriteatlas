@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+    totalSpriteSurfaceArea: 3888
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 5018767091035188956, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: -218759243145193963, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: 3413810037462026878, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: -8040614261421040475, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: 4959580268498199646, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: 5694092191425053634, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: -874866928925046816, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: 7851469215577106442, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: -1947119597284832994, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: -3699941760210888529, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: -188987199052099505, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: 9104761807855522788, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ButtonHighlightBorder_6
+  - ButtonHighlightBorder_7
+  - ButtonHighlightBorder_4
+  - ButtonHighlightBorder_5
+  - ButtonHighlightBorder_2
+  - ButtonHighlightBorder_3
+  - ButtonHighlightBorder_0
+  - ButtonHighlightBorder_1
+  - ButtonHighlightBorder_8
+  - ButtonHighlightBorder_9
+  - ButtonHighlightBorder_11
+  - ButtonHighlightBorder_10
+  m_RenderDataMap: {}
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0
