@@ -19,10 +19,34 @@ public class InterractableMarker : MonoBehaviour
     private List<GameObject> _markers = new List<GameObject>();
     private float angleOffset = 0;
 
-    private void Awake()
+    private void Start()
     {
+        if (interactable == null)
+        {
+            Debug.LogError("Interactable component is missing.");
+            return;
+        }
+        
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
         _pool.prefab = _markerPrefab;
         interactable = transform.GetComponentInParent<IInteractable>();
+
+        interactable.Highlight = this;
+    }
+
+    public GameObjectPool FindObjectPool()
+    {
+        GameObjectPool[] pools;
+        pools = FindObjectsOfType<GameObjectPool>();
+        for (int i = 0; i < pools.Length; i++)
+        {
+            if (pools[i].IsTypeOf<IInteractable>())
+            {
+                return pools[i];
+            }
+        }
+
+        return new  GameObject().AddComponent<GameObjectPool>();
     }
 
     public void GetMarkers()

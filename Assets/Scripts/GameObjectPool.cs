@@ -19,6 +19,8 @@ public class GameObjectPool : MonoBehaviour
         _pool.Release(releaseObject);
     }
 
+    public bool IsTypeOf<T>() => prefab.GetComponent<T>() != null;
+
     private void Start()
     {
         _pool = new ObjectPool<GameObject>(() => Instantiate(prefab, transform));
