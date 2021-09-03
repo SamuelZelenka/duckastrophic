@@ -3,8 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(InterractableMarker))]
 public abstract class DroppedKey : MonoBehaviour, IInteractable
 {
-    [SerializeField] private InterractableMarker _highlight;
-    [SerializeField] private bool _isHighlighted;
+    public InterractableMarker Highlight { get; set; }
+    public bool IsHighlighted { get; private set; }
+
     [SerializeField] private bool _JumpOnAwake = false;
     public Transform Transform => transform;
 
@@ -14,21 +15,20 @@ public abstract class DroppedKey : MonoBehaviour, IInteractable
         {
             DroppedInteraction.ApplyDropForce(GetComponent<Rigidbody2D>());
         }
-        _highlight = GetComponent<InterractableMarker>();
+        Highlight = GetComponent<InterractableMarker>();
     }
     public abstract void Interact();
 
     public void EnableHighlight()
     {
-        _highlight.enabled = true;
-        _highlight.GetMarkers();
-        _isHighlighted = true;
+        Highlight.enabled = true;
+        Highlight.GetMarkers();
+        IsHighlighted = true;
     }
     public void DisableHighlight()
     {
         GameSession.Instance.playerComponents.InteractionController.OnClosestInteractableChange -= DisableHighlight;
-        _highlight.ReleaseMarkers();
-        _isHighlighted = false;
+        Highlight.ReleaseMarkers();
+        IsHighlighted = false;
     }
-    public bool IsHighlighted() => _isHighlighted;
 }

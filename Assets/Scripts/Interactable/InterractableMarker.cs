@@ -51,7 +51,7 @@ public class InterractableMarker : MonoBehaviour
 
     public void GetMarkers()
     {
-        if (GameSession.Instance.playerComponents.InteractionController.ClosestInteractable == interactable && !interactable.IsHighlighted())
+        if (GameSession.Instance.playerComponents.InteractionController.ClosestInteractable == interactable && !interactable.IsHighlighted)
         {
             for (int i = 0; i < markerCount; i++)
             {

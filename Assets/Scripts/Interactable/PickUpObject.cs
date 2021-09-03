@@ -5,27 +5,23 @@ public class PickUpObject : MonoBehaviour, IInteractable
     public int offsetY = 1;
     public int offsetX = 0;
 
-    [SerializeField] private InterractableMarker _highlight;
-    [SerializeField] private bool _isHighlighted;
+    public InterractableMarker Highlight { get; set; }
+    public bool IsHighlighted { get; private set; }
 
 
     public Transform Transform => transform;
 
     public void EnableHighlight()
     {
-        _highlight.enabled = true;
-        _highlight.GetMarkers();
-        _isHighlighted = true;
+        Highlight.enabled = true;
+        Highlight.GetMarkers();
+        IsHighlighted = true;
     }
     public void DisableHighlight()
     {
         GameSession.Instance.playerComponents.InteractionController.OnClosestInteractableChange -= DisableHighlight;
-        _highlight.ReleaseMarkers();
-        _isHighlighted = false;
-    }
-    public bool IsHighlighted()
-    {
-        return _isHighlighted;
+        Highlight.ReleaseMarkers();
+        IsHighlighted = false;
     }
 
     public void Interact()
