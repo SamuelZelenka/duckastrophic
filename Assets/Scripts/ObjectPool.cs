@@ -5,6 +5,7 @@ public class ObjectPool<T> where T : new()
 {
     delegate T CreationHandler();
     CreationHandler OnCreate;
+
     private Queue<T> _pool = new Queue<T>();
 
     public ObjectPool()

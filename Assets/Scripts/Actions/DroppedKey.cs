@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[RequireComponent(typeof(InterractableMarker))]
+[RequireComponent(typeof(InteractableMarker))]
 public abstract class DroppedKey : MonoBehaviour, IInteractable
 {
-    public InterractableMarker Highlight { get; set; }
+    public InteractableMarker Highlight { get; set; }
     public bool IsHighlighted { get; private set; }
 
     [SerializeField] private bool _JumpOnAwake = false;
@@ -15,7 +15,7 @@ public abstract class DroppedKey : MonoBehaviour, IInteractable
         {
             DroppedInteraction.ApplyDropForce(GetComponent<Rigidbody2D>());
         }
-        Highlight = GetComponent<InterractableMarker>();
+        Highlight = GetComponent<InteractableMarker>();
     }
     public abstract void Interact();
 

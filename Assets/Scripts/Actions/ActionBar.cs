@@ -41,8 +41,10 @@ public class ActionBar : MonoBehaviour
             }
         }
     }
+
     private void Start()
     {
+        GameSession.Instance.actionBar = this;
         GenerateActionSlots();
         _actionSlots[0].highlight.enabled = true;
     }

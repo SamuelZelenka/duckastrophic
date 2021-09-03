@@ -13,5 +13,6 @@ public class SceneMerger : MonoBehaviour
         {
             SceneManager.LoadScene(scenes[i], LoadSceneMode.Additive);
         }
+
     }
 }

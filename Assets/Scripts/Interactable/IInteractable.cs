@@ -3,7 +3,7 @@ public interface IInteractable
 {
     Transform Transform { get; }
 
-    InterractableMarker Highlight { get; set; }
+    InteractableMarker Highlight { get; set; }
     bool IsHighlighted { get; }
 
     public void Interact();

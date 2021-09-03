@@ -9,7 +9,6 @@ public class GameSession : MonoBehaviour
     public PlayerComponents playerComponents;
 
     private static GameSession _instance;
-
     private void Awake()
     {
         Load();

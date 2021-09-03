@@ -2,51 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InterractableMarker : MonoBehaviour
+public class InteractableMarker : MonoBehaviour
 {
-
     [Range(0, 25)] public int markerCount = 3;
 
     public float radius = 2;
     public IInteractable interactable;
 
-    [SerializeField] private GameObjectPool _pool;
-    [SerializeField] private GameObject _markerPrefab;
-
     [SerializeField] private Vector2 posOffset;
 
+    private MarkerPool _pool;
 
-    private List<GameObject> _markers = new List<GameObject>();
+    private List<MarkerVisual> _markers = new List<MarkerVisual>();
     private float angleOffset = 0;
 
     private void Start()
     {
+        interactable = transform.GetComponentInParent<IInteractable>();
         if (interactable == null)
         {
-            Debug.LogError("Interactable component is missing.");
+            Debug.LogError($"Interactable component is missing on GameObject <{gameObject.name}> ID:{gameObject.GetInstanceID()}.");
             return;
         }
-        
+        if (GetComponent<Collider2D>() == null)
+        {
+            Debug.LogError($"Collider2D is missing on GameObject <{gameObject.name}> ID:{gameObject.GetInstanceID()}.");
+            return;
+        }
+        _pool = FindObjectPool();
         gameObject.layer = LayerMask.NameToLayer("Interactable");
-        _pool.prefab = _markerPrefab;
-        interactable = transform.GetComponentInParent<IInteractable>();
-
+        
         interactable.Highlight = this;
     }
 
-    public GameObjectPool FindObjectPool()
+    public MarkerPool FindObjectPool()
     {
-        GameObjectPool[] pools;
-        pools = FindObjectsOfType<GameObjectPool>();
+        MarkerPool[] pools;
+        pools = FindObjectsOfType<MarkerPool>();
         for (int i = 0; i < pools.Length; i++)
         {
-            if (pools[i].IsTypeOf<IInteractable>())
+            if (pools[i].GetType() == typeof(MarkerPool))
             {
                 return pools[i];
             }
         }
 
-        return new  GameObject().AddComponent<GameObjectPool>();
+        return new  GameObject().AddComponent<MarkerPool>();
     }
 
     public void GetMarkers()
@@ -56,7 +57,7 @@ public class InterractableMarker : MonoBehaviour
             for (int i = 0; i < markerCount; i++)
             {
                 _markers.Add(_pool.Acquire());
-                _markers[_markers.Count - 1].SetActive(true);
+                _markers[_markers.Count - 1].gameObject.SetActive(true);
             }
         }
     }
@@ -64,7 +65,7 @@ public class InterractableMarker : MonoBehaviour
     {
         for (int i = 0; i < _markers.Count; i++)
         {
-            _markers[i].SetActive(false);
+            _markers[i].gameObject.SetActive(false);
             _pool.Release(_markers[i]);
         }
         _markers.Clear();

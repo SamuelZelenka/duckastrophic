@@ -5,7 +5,7 @@ public class PickUpObject : MonoBehaviour, IInteractable
     public int offsetY = 1;
     public int offsetX = 0;
 
-    public InterractableMarker Highlight { get; set; }
+    public InteractableMarker Highlight { get; set; }
     public bool IsHighlighted { get; private set; }
 
 
