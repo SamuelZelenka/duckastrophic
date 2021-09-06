@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class Dash : IAction
 {
-    public void TriggerAction(PlayerComponents playerComponents)
+    public void TriggerAction()
     {
-        if (playerComponents.SpriteRenderer.flipX && playerComponents.Controller.lastDashTime + playerComponents.Controller.dashCooldown < Time.time)
+        if (PlayerComponentService<SpriteRenderer>.instance.flipX && PlayerComponentService<PlayerController>.instance.lastDashTime + PlayerComponentService<PlayerController>.instance.dashCooldown < Time.time)
         {
-            playerComponents.RigidBody.velocity = new Vector2(playerComponents.Controller.dashForce, 0);
-            playerComponents.Controller.lastDashTime = Time.time;
+            PlayerComponentService<Rigidbody2D>.instance.velocity = new Vector2(PlayerComponentService<PlayerController>.instance.dashForce, 0);
+            PlayerComponentService<PlayerController>.instance.lastDashTime = Time.time;
         }
 
-        if (!playerComponents.SpriteRenderer.flipX && playerComponents.Controller.lastDashTime + playerComponents.Controller.dashCooldown < Time.time)
+        if (!PlayerComponentService<SpriteRenderer>.instance.flipX && PlayerComponentService<PlayerController>.instance.lastDashTime + PlayerComponentService<PlayerController>.instance.dashCooldown < Time.time)
         {
-            playerComponents.RigidBody.velocity = new Vector2(-playerComponents.Controller.dashForce, 0);
-            playerComponents.Controller.lastDashTime = Time.time;
+            PlayerComponentService<Rigidbody2D>.instance.velocity = new Vector2(-PlayerComponentService<PlayerController>.instance.dashForce, 0);
+            PlayerComponentService<PlayerController>.instance.lastDashTime = Time.time;
         }
     }
 

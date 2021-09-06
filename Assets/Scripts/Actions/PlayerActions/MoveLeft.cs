@@ -1,12 +1,12 @@
 using UnityEngine;
 public class MoveLeft : IAction
 {
-    public void TriggerAction(PlayerComponents playerComponents)
+    public void TriggerAction()
     {
-        if (playerComponents.RigidBody.velocity.x < 11)
+        if (PlayerComponentService<Rigidbody2D>.instance.velocity.x < 11)
         {
-            playerComponents.RigidBody.AddForce(playerComponents.Transform.right * -playerComponents.Controller.movementSpeed);
-            playerComponents.SpriteRenderer.flipX = true;
+            PlayerComponentService<Rigidbody2D>.instance.AddForce(PlayerComponentService<Transform>.instance.right * -PlayerComponentService<PlayerController>.instance.movementSpeed);
+            PlayerComponentService<SpriteRenderer>.instance.flipX = true;
         }
     }
     public Sprite GetSprite()

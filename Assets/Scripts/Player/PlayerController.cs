@@ -16,8 +16,12 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         interactionController = GetComponent<InteractionController>();
-
         lastDashTime = dashCooldown;
+        new PlayerComponentService<Rigidbody2D>(this);
+        new PlayerComponentService<PlayerController>(this);
+        new PlayerComponentService<SpriteRenderer>(this);
+        new PlayerComponentService<InteractionController>(this);
+        new PlayerComponentService<Transform>(this);
     }
     private void Update()
     {

@@ -21,7 +21,7 @@ public class ActionSlot : MonoBehaviour
     {
         if (Input.GetKey(actionCombo.Key) && actionCombo.Action != null)
         {
-            actionCombo.Action.TriggerAction(GameSession.Instance.playerComponents);
+            actionCombo.Action.TriggerAction();
         }
     }
 

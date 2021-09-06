@@ -6,7 +6,6 @@ public class GameSession : MonoBehaviour
     public static GameSession Instance => _instance;
 
     [SerializeField] public ActionBar actionBar;
-    public PlayerComponents playerComponents;
 
     private static GameSession _instance;
     private void Awake()
@@ -24,14 +23,5 @@ public class GameSession : MonoBehaviour
         {
             Destroy(this);   
         }
-
-        PlayerController playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        playerComponents = new PlayerComponents
-            (
-            playerController.GetComponent<PlayerController>(),
-            playerController.GetComponent<Rigidbody2D>(),
-            playerController.GetComponent<SpriteRenderer>(),
-            playerController.GetComponent<InteractionController>()
-            );
     }
 }

@@ -19,22 +19,22 @@ public class PickUpObject : MonoBehaviour, IInteractable
     }
     public void DisableHighlight()
     {
-        GameSession.Instance.playerComponents.InteractionController.OnClosestInteractableChange -= DisableHighlight;
+        PlayerComponentService<InteractionController>.instance.OnClosestInteractableChange -= DisableHighlight;
         Highlight.ReleaseMarkers();
         IsHighlighted = false;
     }
 
     public void Interact()
     {
-        if (GameSession.Instance.playerComponents.Controller.pickedUpObject != null)
+        if (PlayerComponentService<PlayerController>.instance.pickedUpObject != null)
         {
-            GameSession.Instance.playerComponents.Controller.pickedUpObject = null;
+            PlayerComponentService<PlayerController>.instance.pickedUpObject = null;
             DroppedInteraction.ApplyDropForce(GetComponent<Rigidbody2D>());
         }
 
-        GameSession.Instance.playerComponents.Controller.pickedUpObject = this;
+        PlayerComponentService<PlayerController>.instance.pickedUpObject = this;
 
-        gameObject.transform.position = GameSession.Instance.playerComponents.Transform.position;
+        gameObject.transform.position = PlayerComponentService<Transform>.instance.position;
         gameObject.transform.position += new Vector3 (offsetX, offsetY, 0);
     }
 }
