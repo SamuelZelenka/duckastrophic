@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Jump : IAction
 {
-    public void TriggerAction(PlayerComponents playerComponents)
+    public void TriggerAction()
     {
-        if (playerComponents.Controller.isGrounded)
+        if (PlayerComponentService<PlayerController>.instance.isGrounded)
         {
-            playerComponents.RigidBody.AddForce(playerComponents.Transform.up * playerComponents.Controller.jumpForce);
-            playerComponents.Controller.isGrounded = false;
+            PlayerComponentService<Rigidbody2D>.instance.AddForce(PlayerComponentService<Transform>.instance.up * PlayerComponentService<PlayerController>.instance.jumpForce);
+            PlayerComponentService<PlayerController>.instance.isGrounded = false;
         }
     }
     public Sprite GetSprite()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DroppedAction : DroppedKey
+public class DroppedAction : DroppedObject
 {
     public  int actionIndex;
     public readonly IAction[] actions = new IAction[]
