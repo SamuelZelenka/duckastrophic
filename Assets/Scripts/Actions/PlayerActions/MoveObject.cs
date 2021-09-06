@@ -5,7 +5,7 @@ public class MoveObject : IAction
 
     public void TriggerAction(PlayerComponents playerComponents)
     {
-        if(GameSession.Instance.playerComponents.InteractionController.ClosestInteractable.GetType() == typeof(PickUpObject))
+        if(GameSession.Instance.playerComponents.InteractionController.ClosestInteractable?.GetType() == typeof(PickUpObject))
         { 
         GameSession.Instance.playerComponents.InteractionController.InteractWithClosestObject();
         }
