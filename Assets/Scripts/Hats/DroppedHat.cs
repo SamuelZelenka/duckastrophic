@@ -5,8 +5,9 @@ public class DroppedHat : DroppedObject, IInteractable
 {
     private Sprite _hatSprite;
     private SpriteRenderer _spriterenderer;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _spriterenderer = GetComponent<SpriteRenderer>();
         _hatSprite = _spriterenderer.sprite;
     }
