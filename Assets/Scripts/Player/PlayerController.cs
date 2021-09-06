@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded;
     public PickUpObject heldObject = null;
+    public AudioClip duckQuack;
 
 
 
@@ -42,6 +43,8 @@ public class PlayerController : MonoBehaviour
     }
     public void PickUpObject(PickUpObject pickUpObject)
     {
+        AudioManager.Instance.Play(duckQuack);
+
         if (heldObject == null)
         {
             heldObject = pickUpObject;

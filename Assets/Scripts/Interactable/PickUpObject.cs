@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class PickUpObject : MonoBehaviour, IInteractable
 {
+
     public InteractableMarker Highlight { get; set; }
     public bool IsHighlighted { get; private set; }
+
 
     public Transform Transform => transform;
 
