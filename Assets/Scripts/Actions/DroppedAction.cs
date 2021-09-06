@@ -27,6 +27,7 @@ public class DroppedAction : DroppedObject
         else
         {
             actions[actionIndex] = newAction;
+            _actionIconRenderer.sprite = actions[actionIndex].GetSprite();
         }
     }
 }
