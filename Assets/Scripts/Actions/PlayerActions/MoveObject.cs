@@ -3,11 +3,11 @@ using UnityEngine;
 public class MoveObject : IAction
 {
 
-    public void TriggerAction(PlayerComponents playerComponents)
+    public void TriggerAction()
     {
-        if(GameSession.Instance.playerComponents.InteractionController.ClosestInteractable?.GetType() == typeof(PickUpObject))
-        { 
-        GameSession.Instance.playerComponents.InteractionController.InteractWithClosestObject();
+        if(PlayerComponentService<InteractionController>.instance.ClosestInteractable?.GetType() == typeof(PickUpObject))
+        {
+            PlayerComponentService<InteractionController>.instance.InteractWithClosestObject();
         }
     }
 
