@@ -3,8 +3,22 @@ using UnityEngine;
 
 public class DroppedHat : DroppedObject, IInteractable
 {
-    [SerializeField] private Sprite hatSprite;
+    private Sprite _hatSprite;
+    private SpriteRenderer _spriterenderer;
+    private void Awake()
+    {
+        _spriterenderer = GetComponent<SpriteRenderer>();
+        _hatSprite = _spriterenderer.sprite;
+    }
     public override void Interact()
     {
+        Sprite hatFromPlayer = PlayerComponentService<PlayerController>.instance.GetHat();
+        _spriterenderer.sprite = hatFromPlayer;
+        PlayerComponentService<PlayerController>.instance.SwapHat(ref _hatSprite);
+        _hatSprite = hatFromPlayer;
+        if (_hatSprite == null)
+        {
+            Destroy(gameObject);
+        }
     }
 }

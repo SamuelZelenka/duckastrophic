@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ActionBar : MonoBehaviour
 {
-    private const int ACTION_SLOT_COUNT = 3;
     private readonly KeyCode[,] keyboardLayout = new KeyCode[10, 3] 
     { 
         //Keyboard layout
@@ -19,6 +18,7 @@ public class ActionBar : MonoBehaviour
         { KeyCode.P, KeyCode.None, KeyCode.None }
     };
 
+    [SerializeField] private int _actionSlotCount = 2;
     [SerializeField] private ActionSlot _actionSlotPrefab;
     [SerializeField] private Transform _highlight;
 
@@ -46,6 +46,11 @@ public class ActionBar : MonoBehaviour
     {
         GameSession.Instance.actionBar = this;
         GenerateActionSlots();
+        if (_actionSlotCount > 1)
+        {
+            _actionSlots[0].actionCombo.Action = new MoveLeft();
+            _actionSlots[1].actionCombo.Action = new MoveRight();
+        }
         _actionSlots[0].highlight.enabled = true;
     }
     public void SetKey(KeyCode key) => _actionSlots[_actionSlotIndex].actionCombo.Key = key;
@@ -69,14 +74,14 @@ public class ActionBar : MonoBehaviour
     private void GenerateActionSlots()
     {
         List<Vector2Int> keyboardPositions = new List<Vector2Int>();
-        keyboardPositions.Add(GetRandomKeyPos(0, ACTION_SLOT_COUNT, 0));
+        keyboardPositions.Add(GetRandomKeyPos(0, _actionSlotCount, 0));
 
-        for (int keyCount = 1; keyCount < ACTION_SLOT_COUNT; keyCount++)
+        for (int keyCount = 1; keyCount < _actionSlotCount; keyCount++)
         {
-            keyboardPositions.Add(GetRandomKeyPos(keyboardPositions[keyCount - 1].x + 1, ACTION_SLOT_COUNT, keyCount));
+            keyboardPositions.Add(GetRandomKeyPos(keyboardPositions[keyCount - 1].x + 1, _actionSlotCount, keyCount));
         }
 
-        for (int i = 0; i < ACTION_SLOT_COUNT; i++)
+        for (int i = 0; i < _actionSlotCount; i++)
         {
             ActionSlot newSlot = Instantiate(_actionSlotPrefab, transform);
             newSlot.name = $"Action Slot {i}";

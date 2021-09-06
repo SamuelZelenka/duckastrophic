@@ -6,7 +6,7 @@ public class InteractableMarker : MonoBehaviour
 {
     [Range(0, 25)] public int markerCount = 3;
 
-    public float radius = 2;
+    public float radius = 1;
     public IInteractable interactable;
 
     [SerializeField] private Vector2 posOffset;
