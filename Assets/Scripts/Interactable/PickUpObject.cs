@@ -15,13 +15,13 @@ public class PickUpObject : MonoBehaviour, IInteractable
     }
     public void DisableHighlight()
     {
-        GameSession.Instance.playerComponents.InteractionController.OnClosestInteractableChange -= DisableHighlight;
+        PlayerComponentService<InteractionController>.instance.OnClosestInteractableChange -= DisableHighlight;
         Highlight.ReleaseMarkers();
         IsHighlighted = false;
     }
 
     public void Interact()
     {
-        GameSession.Instance.playerComponents.Controller.PickUpObject(this);
+        PlayerComponentService<PlayerController>.instance.PickUpObject(this);
     }
 }
