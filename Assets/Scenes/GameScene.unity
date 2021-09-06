@@ -547,7 +547,8 @@ MonoBehaviour:
   isGrounded: 0
   heldObject: {fileID: 0}
   duckQuack: {fileID: 8300000, guid: 3110bca724d58ee4381cebce3bb78e2c, type: 3}
-  interactionController: {fileID: 0}
+  _interactionController: {fileID: 0}
+  _hatHolder: {fileID: 0}
 --- !u!50 &1013885697
 Rigidbody2D:
   serializedVersion: 4
@@ -854,11 +855,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6169816725700842984, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.02
+      value: 2.46
       objectReference: {fileID: 0}
     - target: {fileID: 6169816725700842984, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.68
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 6169816725700842984, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1159,11 +1160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6169816725700842984, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.63506794
+      value: -6.69
       objectReference: {fileID: 0}
     - target: {fileID: 6169816725700842984, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5950923
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 6169816725700842984, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: m_LocalPosition.z

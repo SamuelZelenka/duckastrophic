@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
             pickUpObject.transform.localPosition = new Vector2( _pickedUpOffsetX, _pickedUpOffsetY);
             pickUpObject.GetComponent<Collider2D>().enabled = false;
             pickUpObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            pickUpObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
     }
     public Sprite GetHat() => _hatHolder.sprite;
