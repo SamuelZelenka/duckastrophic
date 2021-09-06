@@ -14,13 +14,12 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public PickUpObject heldObject = null;
 
-
-
-    [SerializeField] private InteractionController interactionController;
+    [SerializeField] private InteractionController _interactionController;
+    [SerializeField] private SpriteRenderer _hatHolder;
 
     private void Awake()
     {
-        interactionController = GetComponent<InteractionController>();
+        _interactionController = GetComponent<InteractionController>();
         lastDashTime = dashCooldown;
         new PlayerComponentService<Rigidbody2D>(this);
         new PlayerComponentService<PlayerController>(this);
@@ -33,7 +32,7 @@ public class PlayerController : MonoBehaviour
         GameSession.Instance.actionBar.CheckKeys();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            interactionController.ClosestInteractable?.Interact();
+            _interactionController.ClosestInteractable?.Interact();
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -51,6 +50,11 @@ public class PlayerController : MonoBehaviour
             pickUpObject.GetComponent<Collider2D>().enabled = false;
             pickUpObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         }
+    }
+    public Sprite GetHat() => _hatHolder.sprite;
+    public void SwapHat(ref Sprite hat)
+    {
+        _hatHolder.sprite = hat;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

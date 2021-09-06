@@ -12,6 +12,7 @@ public class InteractableMarkerEditor : Editor
     }
     public override void OnInspectorGUI()
     {
+        DrawDefaultInspector();
         if (marker.GetComponent<Collider2D>() == null)
         {
             EditorGUILayout.HelpBox("Collider2D is missing", MessageType.Error);
