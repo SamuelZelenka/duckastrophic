@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class PickUp : IAction
 {
-    public PickUpObject heldObject = null;
+
     public AudioClip duckQuack;
+
+    private PlayerController _playerController;
+
+    public PickUp()
+    {
+        _playerController = PlayerComponentService<PlayerController>.instance;
+    }
+
     public void DropObject()
     {
-        Rigidbody2D rbody = heldObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbody = _playerController.heldObject.GetComponent<Rigidbody2D>();
 
-        heldObject.transform.SetParent(null);
+        _playerController.heldObject.transform.SetParent(null);
 
-        heldObject.GetComponent<Collider2D>().enabled = true;
+        _playerController.heldObject.GetComponent<Collider2D>().enabled = true;
         rbody.bodyType = RigidbodyType2D.Dynamic;
 
-        if (facingLeft)
+        if (_playerController.isFacingRight)
         {
             rbody.AddForce(Vector2.left * 200);
         }
@@ -24,36 +32,22 @@ public class PickUp : IAction
             rbody.AddForce(Vector2.right * 200);
         }
 
-        heldObject = null;
+        _playerController.heldObject = null;
     }
 
     public void TriggerAction()
     {
         AudioManager.Instance.Play(duckQuack);
 
-        if (heldObject == null)
-        {
-            heldObject = pickUpObject;
-            pickUpObject.transform.SetParent(transform);
-
-            pickUpObject.transform.localPosition = new Vector2(_pickedUpOffsetX, _pickedUpOffsetY);
-            pickUpObject.GetComponent<Collider2D>().enabled = false;
-            pickUpObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            pickUpObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        }
-        else
-        {
-            DropObject();
-        }
     }
 
     public Sprite GetSprite()
     {
-        throw new System.NotImplementedException();
+        return null;
     }
 
     public void AssignHeldObject(PickUpObject pickUpObject)
     {
-        heldObject = pickUpObject;
+        PlayerComponentService<PlayerController>.instance.heldObject = pickUpObject;
     }
 }

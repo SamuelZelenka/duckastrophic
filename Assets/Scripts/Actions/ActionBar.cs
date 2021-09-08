@@ -18,7 +18,7 @@ public class ActionBar : MonoBehaviour
         { KeyCode.P, KeyCode.None, KeyCode.None }
     };
 
-    [SerializeField] private int _actionSlotCount = 2;
+    [SerializeField] private int _actionSlotCount = 5;
     [SerializeField] private ActionSlot _actionSlotPrefab;
     [SerializeField] private Transform _highlight;
 

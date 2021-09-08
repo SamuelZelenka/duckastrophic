@@ -544,9 +544,12 @@ MonoBehaviour:
   dashForce: 10
   lastDashTime: 0
   dashCooldown: 1
+  pickedUpOffsetY: 0.55
+  pickedUpOffsetX: 0
+  isFacingRight: 0
   isGrounded: 0
-  heldObject: {fileID: 0}
   duckQuack: {fileID: 8300000, guid: 3110bca724d58ee4381cebce3bb78e2c, type: 3}
+  heldObject: {fileID: 0}
   _interactionController: {fileID: 0}
   _hatHolder: {fileID: 0}
 --- !u!50 &1013885697
@@ -841,9 +844,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1299406752}
     m_Modifications:
+    - target: {fileID: 4187876668367528356, guid: 633dbc6350aa94d4486126826122f945, type: 3}
+      propertyPath: radius
+      value: 0.94
+      objectReference: {fileID: 0}
     - target: {fileID: 4636907673577341941, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: actionIndex
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6169816725700842983, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: m_Name
@@ -1146,6 +1153,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1299406752}
     m_Modifications:
+    - target: {fileID: 4187876668367528356, guid: 633dbc6350aa94d4486126826122f945, type: 3}
+      propertyPath: radius
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187876668367528356, guid: 633dbc6350aa94d4486126826122f945, type: 3}
+      propertyPath: markerCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4636907673577341941, guid: 633dbc6350aa94d4486126826122f945, type: 3}
       propertyPath: actionIndex
       value: 0

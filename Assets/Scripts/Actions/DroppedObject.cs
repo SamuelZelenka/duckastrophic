@@ -31,4 +31,9 @@ public abstract class DroppedObject : MonoBehaviour, IInteractable
         Highlight.ReleaseMarkers();
         IsHighlighted = false;
     }
+
+    public bool IsInteractable()
+    {
+        return true;
+    }
 }

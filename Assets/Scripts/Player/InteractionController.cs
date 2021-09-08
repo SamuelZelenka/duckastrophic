@@ -42,12 +42,17 @@ public class InteractionController : MonoBehaviour
             for (int i = 0; i < colliders.Length; i++)
             {
                 IInteractable interactable = colliders[i].GetComponent<IInteractable>();
-                if (Vector3.Distance(interactable.Transform.position, transform.position) < Vector3.Distance(ClosestInteractable.Transform.position, transform.position))
+
+                if (Vector3.Distance(interactable.Transform.position, transform.position) < Vector3.Distance(ClosestInteractable.Transform.position, transform.position) && interactable.IsInteractable())
                 {
                     ClosestInteractable = interactable;
                 }
             }
-            ClosestInteractable.EnableHighlight();
+            if (ClosestInteractable.IsInteractable())
+            {
+                ClosestInteractable.EnableHighlight();
+            }
+                
             return;
         }
         ClosestInteractable = null;

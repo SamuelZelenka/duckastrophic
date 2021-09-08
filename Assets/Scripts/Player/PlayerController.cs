@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
     public float lastDashTime = 0f;
     public float dashCooldown = 5f;
 
-    private float _pickedUpOffsetY = 0.55f;
-    private float _pickedUpOffsetX = 0f;
+    public float pickedUpOffsetY = 0.55f;
+    public float pickedUpOffsetX = 0f;
 
+    public bool isFacingRight;
     public bool isGrounded;
-    public PickUpObject heldObject = null;
     public AudioClip duckQuack;
+    public PickUpObject heldObject = null;
+
 
     [SerializeField] private InteractionController _interactionController;
     [SerializeField] private SpriteRenderer _hatHolder;
@@ -38,21 +40,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             GameSession.Instance.actionBar.SwitchAction();
-        }
-    }
-    public void PickUpObject(PickUpObject pickUpObject)
-    {
-        AudioManager.Instance.Play(duckQuack);
-
-        if (heldObject == null)
-        {
-            heldObject = pickUpObject;
-            pickUpObject.transform.SetParent(transform);
-
-            pickUpObject.transform.localPosition = new Vector2( _pickedUpOffsetX, _pickedUpOffsetY);
-            pickUpObject.GetComponent<Collider2D>().enabled = false;
-            pickUpObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            pickUpObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
     }
     public Sprite GetHat() => _hatHolder.sprite;

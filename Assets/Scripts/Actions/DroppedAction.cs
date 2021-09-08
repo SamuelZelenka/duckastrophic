@@ -9,7 +9,8 @@ public class DroppedAction : DroppedObject
         new MoveRight(),
         new Jump(),
         new Dash(),
-        new MoveObject()
+        new MoveObject(),
+        new PickUp()
     };
     [SerializeField] private SpriteRenderer _actionIconRenderer;
     protected void Start()
