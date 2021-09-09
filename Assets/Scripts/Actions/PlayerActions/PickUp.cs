@@ -7,6 +7,8 @@ public class PickUp : IAction
 
     public AudioClip duckQuack;
 
+    public bool HoldKeyDown { get { return false; } }
+
     private PlayerController _playerController;
 
     public PickUp()
@@ -14,36 +16,22 @@ public class PickUp : IAction
         _playerController = PlayerComponentService<PlayerController>.instance;
     }
 
-    public void DropObject()
-    {
-        Rigidbody2D rbody = _playerController.heldObject.GetComponent<Rigidbody2D>();
-
-        _playerController.heldObject.transform.SetParent(null);
-
-        _playerController.heldObject.GetComponent<Collider2D>().enabled = true;
-        rbody.bodyType = RigidbodyType2D.Dynamic;
-
-        if (_playerController.isFacingRight)
-        {
-            rbody.AddForce(Vector2.left * 200);
-        }
-        else
-        {
-            rbody.AddForce(Vector2.right * 200);
-        }
-
-        _playerController.heldObject = null;
-    }
-
     public void TriggerAction()
     {
         AudioManager.Instance.Play(duckQuack);
-
+        if (PlayerComponentService<InteractionController>.instance.ClosestInteractable != null && PlayerComponentService<InteractionController>.instance.ClosestInteractable.GetType() == typeof(PickUpObject))
+        {
+            PlayerComponentService<InteractionController>.instance.ClosestInteractable.Interact();
+        }
+        else
+        {
+            PlayerComponentService<PlayerController>.instance.heldObject?.Interact();
+        }
     }
 
     public Sprite GetSprite()
     {
-        return null;
+        return SpriteReferences.Instance.PickUpObject;
     }
 
     public void AssignHeldObject(PickUpObject pickUpObject)

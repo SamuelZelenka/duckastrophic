@@ -1,6 +1,7 @@
 using UnityEngine;
 public class MoveLeft : IAction
 {
+    public bool HoldKeyDown { get { return true; } }
     public void TriggerAction()
     {
         if (PlayerComponentService<Rigidbody2D>.instance.velocity.x < 11)

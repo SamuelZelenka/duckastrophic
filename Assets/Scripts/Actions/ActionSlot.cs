@@ -19,11 +19,24 @@ public class ActionSlot : MonoBehaviour
     }
     public void CheckInput()
     {
-        if (Input.GetKey(actionCombo.Key) && actionCombo.Action != null)
+        if (actionCombo.Action.HoldKeyDown)
         {
-            actionCombo.Action.TriggerAction();
+            TriggerAction(Input.GetKey(actionCombo.Key));
         }
+        else
+        {
+            TriggerAction(Input.GetKeyDown(actionCombo.Key));
+        }
+        void TriggerAction(bool input)
+        {
+            if (input && actionCombo.Action != null)
+            {
+                actionCombo.Action.TriggerAction();
+            }
+        }
+
     }
+
 
     private void UpdateVisuals()
     {

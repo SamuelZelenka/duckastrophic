@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Dash : IAction
 {
+    public bool HoldKeyDown { get { return true; } }
     public void TriggerAction()
     {
         if (PlayerComponentService<SpriteRenderer>.instance.flipX && PlayerComponentService<PlayerController>.instance.lastDashTime + PlayerComponentService<PlayerController>.instance.dashCooldown < Time.time)

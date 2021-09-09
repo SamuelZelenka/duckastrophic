@@ -18,7 +18,7 @@ public class ActionBar : MonoBehaviour
         { KeyCode.P, KeyCode.None, KeyCode.None }
     };
 
-    [SerializeField] private int _actionSlotCount = 5;
+    [SerializeField] private int _actionSlotCount;
     [SerializeField] private ActionSlot _actionSlotPrefab;
     [SerializeField] private Transform _highlight;
 
@@ -34,11 +34,15 @@ public class ActionBar : MonoBehaviour
         set
         {
             _actionSlots[_actionSlotIndex].highlight.enabled = false;
+
             _actionSlotIndex = value % _actionSlots.Count;
             if (_actionSlotIndex < 0)
             {
                 _actionSlotIndex = _actionSlots.Count - 1;
             }
+
+
+            _actionSlotIndex = (value % _actionSlotCount + _actionSlotCount) % _actionSlotCount;
         }
     }
 
@@ -69,6 +73,17 @@ public class ActionBar : MonoBehaviour
     {
             ActionSlotIndex += Input.GetKey(KeyCode.LeftShift) ? -1 : 1;
             _actionSlots[_actionSlotIndex].highlight.enabled = true;
+    }
+    public bool ContainsAction<T>() where T : IAction
+    {
+        foreach (ActionSlot slot in _actionSlots)
+        {
+            if (slot.actionCombo.Action.GetType() == typeof(T))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void GenerateActionSlots()

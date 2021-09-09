@@ -1,6 +1,7 @@
 using UnityEngine;
 public class MoveRight : IAction
 {
+    public bool HoldKeyDown { get { return true; } }
     public void TriggerAction()
     {
         // Gör 11 till en variabel (const eller en max velocity) för att göra det tydligt vad 11 är för något
