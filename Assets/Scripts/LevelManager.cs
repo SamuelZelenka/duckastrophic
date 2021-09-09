@@ -1,0 +1,21 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LevelManager : MonoBehaviour
+{
+    [Header("Additive Scenes")]
+    [SerializeField] private string[] _scenes;
+
+    private void Awake()
+    {
+        MergeScenes();
+    }
+
+    private void MergeScenes()
+    {
+        for (int i = 0; i < _scenes.Length; i++)
+        {
+            SceneManager.LoadScene(_scenes[i], LoadSceneMode.Additive);
+        }
+    }
+}

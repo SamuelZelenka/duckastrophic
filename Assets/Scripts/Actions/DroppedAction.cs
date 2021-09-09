@@ -8,7 +8,8 @@ public class DroppedAction : DroppedObject
         new MoveLeft(),
         new MoveRight(),
         new Jump(),
-        new Dash(),
+        new DashLeft(),
+        new DashRight(),
         new PickUp()
     };
     [SerializeField] private SpriteRenderer _actionIconRenderer;

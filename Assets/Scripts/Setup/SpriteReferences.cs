@@ -6,7 +6,8 @@ public class SpriteReferences : MonoBehaviour
     public Sprite Jump;
     public Sprite MoveLeft;
     public Sprite MoveRight;
-    public Sprite Dash;
+    public Sprite DashLeft;
+    public Sprite DashRight;
     public Sprite PickUpObject;
 
     public static SpriteReferences Instance => _instance;

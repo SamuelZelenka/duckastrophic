@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(InteractableMarker))]
 public class PickUpObject : MonoBehaviour, IInteractable
 {
     public InteractableMarker Highlight { get; set; }
@@ -12,6 +13,7 @@ public class PickUpObject : MonoBehaviour, IInteractable
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
     }
 
     public void EnableHighlight()

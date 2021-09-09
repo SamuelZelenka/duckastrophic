@@ -1,25 +1,45 @@
 using UnityEngine;
 
-public class Dash : IAction
+public class DashRight : IAction
 {
-    public bool HoldKeyDown { get { return true; } }
+    public bool HoldKeyDown { get { return false; } }
     public void TriggerAction()
     {
-        if (PlayerComponentService<SpriteRenderer>.instance.flipX && PlayerComponentService<PlayerController>.instance.lastDashTime + PlayerComponentService<PlayerController>.instance.dashCooldown < Time.time)
-        {
-            PlayerComponentService<Rigidbody2D>.instance.velocity = new Vector2(PlayerComponentService<PlayerController>.instance.dashForce, 0);
-            PlayerComponentService<PlayerController>.instance.lastDashTime = Time.time;
-        }
+        PlayerController playerController = PlayerComponentService<PlayerController>.instance;
+        Rigidbody2D rigidbody = PlayerComponentService<Rigidbody2D>.instance;
 
-        if (!PlayerComponentService<SpriteRenderer>.instance.flipX && PlayerComponentService<PlayerController>.instance.lastDashTime + PlayerComponentService<PlayerController>.instance.dashCooldown < Time.time)
+        // dash right
+        if (playerController.lastDashTime + playerController.dashCooldown < Time.time)
         {
-            PlayerComponentService<Rigidbody2D>.instance.velocity = new Vector2(-PlayerComponentService<PlayerController>.instance.dashForce, 0);
-            PlayerComponentService<PlayerController>.instance.lastDashTime = Time.time;
+            rigidbody.velocity = new Vector2(playerController.dashForce, playerController.dashForce);
+            playerController.lastDashTime = Time.time;
         }
     }
 
     public Sprite GetSprite()
     {
-        return SpriteReferences.Instance.Dash;
+        return SpriteReferences.Instance.DashRight;
+    }
+}
+
+public class DashLeft : IAction
+{
+    public bool HoldKeyDown { get { return false; } }
+    public void TriggerAction()
+    {
+        PlayerController playerController = PlayerComponentService<PlayerController>.instance;
+        Rigidbody2D rigidbody = PlayerComponentService<Rigidbody2D>.instance;
+
+        // dash left
+        if (playerController.lastDashTime + playerController.dashCooldown < Time.time)
+        {
+            rigidbody.velocity = new Vector2(-playerController.dashForce, playerController.dashForce);
+            playerController.lastDashTime = Time.time;
+        }
+    }
+
+    public Sprite GetSprite()
+    {
+        return SpriteReferences.Instance.DashLeft;
     }
 }
