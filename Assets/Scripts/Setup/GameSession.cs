@@ -6,7 +6,7 @@ public class GameSession : MonoBehaviour
 
     public ActionBar actionBar;
 
-    public int ActionBarCount = 2;
+    [Range(1,10)]public int ActionBarCount = 2;
 
     private static GameSession _instance;
     private void Awake()

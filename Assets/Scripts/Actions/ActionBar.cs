@@ -52,6 +52,10 @@ public class ActionBar : MonoBehaviour
         _actionSlotCount = GameSession.Instance.ActionBarCount;
         GameSession.Instance.actionBar = this;
         GenerateActionSlots();
+        if (_actionSlotCount == 1)
+        {
+            _actionSlots[0].actionCombo.Action = new MoveRight();
+        }
         if (_actionSlotCount > 1)
         {
             _actionSlots[0].actionCombo.Action = new MoveLeft();
