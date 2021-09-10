@@ -30,7 +30,6 @@ public class InteractableMarker : MonoBehaviour
             return;
         }
         _pool = FindObjectPool();
-        gameObject.layer = LayerMask.NameToLayer("Interactable");
         
         interactable.Highlight = this;
     }

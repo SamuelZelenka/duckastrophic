@@ -34,7 +34,7 @@ public class InteractionController : MonoBehaviour
 
     private void FindClosestInteractable()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _radius, LayerMask.GetMask("Interactable"));
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _radius, LayerMask.GetMask("Swapables"));
         if (colliders.Length > 0)
         {
             ClosestInteractable = colliders[0].GetComponent<IInteractable>();

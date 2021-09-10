@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3908b8fbe0bab44f87f50ab9d0ff9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 800
+  movementSpeed: 30
   jumpForce: 200
   dashForce: 10
   lastDashTime: 0
@@ -743,7 +743,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 70a89308f7962314a8826c69cd68a930, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1284,6 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionBar: {fileID: 0}
+  ActionBarCount: 3
 --- !u!4 &1668873650
 Transform:
   m_ObjectHideFlags: 0

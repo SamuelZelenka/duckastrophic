@@ -1,34 +1,56 @@
 using UnityEngine;
-public class MoveLeft : IAction
+
+public abstract class Movement : IAction
 {
-    public bool HoldKeyDown { get { return true; } }
-    public void TriggerAction()
+    public abstract bool HoldKeyDown { get; }
+
+    public abstract Sprite GetSprite();
+
+    public abstract void TriggerAction();
+
+    protected virtual void MoveDirection(Vector2 direction)
+    {
+        float movementSpeed = PlayerComponentService<PlayerController>.instance.movementSpeed;
+        if (!PlayerComponentService<PlayerController>.instance.isGrounded)
+        {
+            movementSpeed *= 0.2f;
+        }
+        PlayerComponentService<Rigidbody2D>.instance.velocity = PlayerComponentService<Rigidbody2D>.instance.velocity + direction * movementSpeed * Time.deltaTime;
+        PlayerComponentService<SpriteRenderer>.instance.flipX = true;
+    }
+}
+
+public class MoveLeft : Movement
+{
+    public override bool HoldKeyDown { get { return true; } }
+    public override void TriggerAction()
     {
         if (PlayerComponentService<Rigidbody2D>.instance.velocity.x < 11)
         {
-            PlayerComponentService<Rigidbody2D>.instance.velocity = (Vector3)PlayerComponentService<Rigidbody2D>.instance.velocity + PlayerComponentService<Transform>.instance.right * -PlayerComponentService<PlayerController>.instance.movementSpeed * Time.deltaTime;
+            MoveDirection(-PlayerComponentService<Transform>.instance.right);
             PlayerComponentService<SpriteRenderer>.instance.flipX = true;
         }
     }
-    public Sprite GetSprite()
+    public override Sprite GetSprite()
     {
         return SpriteReferences.Instance.MoveLeft;
     }
 }
 
-public class MoveRight : IAction
+public class MoveRight : Movement
 {
-    public bool HoldKeyDown { get { return true; } }
-    public void TriggerAction()
+    public override bool HoldKeyDown { get { return true; } }
+    public override void TriggerAction()
     {
         // Gör 11 till en variabel (const eller en max velocity) för att göra det tydligt vad 11 är för något
+        // gör en metod för move
         if (PlayerComponentService<Rigidbody2D>.instance.velocity.x < 11)
         {
-            PlayerComponentService<Rigidbody2D>.instance.velocity = (Vector3)PlayerComponentService<Rigidbody2D>.instance.velocity + PlayerComponentService<Transform>.instance.right * PlayerComponentService<PlayerController>.instance.movementSpeed * Time.deltaTime;
+            MoveDirection(PlayerComponentService<Transform>.instance.right);
             PlayerComponentService<SpriteRenderer>.instance.flipX = false;
         }
     }
-    public Sprite GetSprite()
+    public override Sprite GetSprite()
     {
         return SpriteReferences.Instance.MoveRight;
     }
