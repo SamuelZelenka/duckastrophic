@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(DroppedAction)), CanEditMultipleObjects]
-public class DroppedActionEditor : Editor
+[CustomEditor(typeof(SwapableAction)), CanEditMultipleObjects]
+public class SwapableActionEditor : Editor
 {
     private SerializedProperty _actionIndex;
 
@@ -17,7 +17,7 @@ public class DroppedActionEditor : Editor
         serializedObject.Update();
 
         List<string> options = new List<string>();
-        DroppedAction target = (DroppedAction)this.target;
+        SwapableAction target = (SwapableAction)this.target;
         for (int i = 0; i < target.actions.Length; i++)
         {
             options.Add(target.actions[i].ToString());

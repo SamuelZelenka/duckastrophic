@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6234036589301209854}
   - component: {fileID: 6234036589301209825}
-  - component: {fileID: 3669795764258858911}
+  - component: {fileID: 4836972245947770240}
   m_Layer: 0
   m_Name: Car1
   m_TagString: Untagged
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: e794d585ff9789148873d9f645606d04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3669795764258858911
+--- !u!60 &4836972245947770240
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,7 +99,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 3.95, y: 1.3}
     newSize: {x: 0.79, y: 0.26}
     adaptiveTilingThreshold: 0.5
@@ -108,18 +108,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.61991084, y: 0.60998166}
-      - {x: -0.58521307, y: 0.60545295}
-      - {x: -0.7699621, y: 0.27386367}
-      - {x: -1.9694316, y: 0.29976907}
-      - {x: -1.8851551, y: -0.39276028}
-      - {x: -1.6077068, y: -0.39701098}
-      - {x: -1.5059011, y: -0.63711}
-      - {x: 1.0704198, y: -0.6336789}
-      - {x: 1.2217801, y: -0.45460773}
-      - {x: 1.9116498, y: -0.49162406}
-      - {x: 1.9537815, y: 0.33025312}
-      - {x: 1.0446439, y: 0.28928775}
-    - - {x: -0.32500002, y: 0.4}
-      - {x: 0.375, y: 0.3}
-      - {x: -0.22500001, y: 0.4}
+    - - {x: 0.5997564, y: 1.278088}
+      - {x: -0.5707732, y: 1.2608813}
+      - {x: -0.69474304, y: 0.91064215}
+      - {x: -1.916322, y: 0.9196043}
+      - {x: -1.9228417, y: 0.14348021}
+      - {x: -1.7598021, y: 0.019559383}
+      - {x: 1.8576438, y: 0.013039827}
+      - {x: 1.9554409, y: 0.94889295}
+      - {x: 1.009847, y: 0.92185235}
+    - - {x: -0.18264735, y: 0.91607714}
+      - {x: 0.534144, y: 0.9888704}
+      - {x: 0.43000454, y: 0.42745703}
+      - {x: -0.71717095, y: 0.42608845}
+      - {x: -0.70432514, y: 0.6728262}

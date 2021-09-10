@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(InteractableMarker))]
-public abstract class DroppedObject : MonoBehaviour, IInteractable
+public abstract class SwappableObject : MonoBehaviour, IInteractable
 {
     public InteractableMarker Highlight { get; set; }
     public bool IsHighlighted { get; private set; }

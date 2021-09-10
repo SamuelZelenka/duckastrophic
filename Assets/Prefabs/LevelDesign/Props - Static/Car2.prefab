@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3058923379574009703}
   - component: {fileID: 3058923379574009700}
-  - component: {fileID: 3058923379574009702}
+  - component: {fileID: 2652506330786805229}
   m_Layer: 0
   m_Name: Car2
   m_TagString: Untagged
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 3909540f50b6c3e488e01c1a5da2d467, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &3058923379574009702
-EdgeCollider2D:
+--- !u!60 &2652506330786805229
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -97,21 +97,30 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 3.95, y: 1.3}
+    newSize: {x: 3.95, y: 1.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -1.7395263, y: -0.42385304}
-  - {x: -1.8467798, y: -0.016757488}
-  - {x: -1.8092518, y: 0.183774}
-  - {x: -0.2644658, y: 0.1780498}
-  - {x: 0.0065021515, y: 0.5232755}
-  - {x: 0.4812522, y: 0.5066317}
-  - {x: 0.66015387, y: 0.40735477}
-  - {x: 0.8258424, y: 0.27465475}
-  - {x: 0.8477664, y: 0.17755401}
-  - {x: 1.2437377, y: 0.18806994}
-  - {x: 1.8238664, y: -0.044699907}
-  - {x: 1.8389488, y: -0.39245677}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+    m_Paths:
+    - - {x: -0.02333945, y: 1.1609635}
+      - {x: -0.3129356, y: 0.8578478}
+      - {x: -1.858389, y: 0.85066456}
+      - {x: -1.8449336, y: 0.075083256}
+      - {x: -1.4200169, y: -0.0044851303}
+      - {x: 1.0809802, y: 0.008970022}
+      - {x: 1.2101812, y: 0.19406056}
+      - {x: 1.8045684, y: 0.21727553}
+      - {x: 1.8359638, y: 0.5840533}
+      - {x: 1.3142228, y: 0.8566439}
+      - {x: 0.8228321, y: 0.8633404}
+      - {x: 0.6072265, y: 1.1564786}
+    - - {x: 0.32500002, y: 0.90000004}
+      - {x: 0.32500002, y: 0.95}
+      - {x: 0.22500001, y: 0.95}
+      - {x: 0.22500001, y: 0.90000004}

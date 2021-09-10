@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class DroppedHat : DroppedObject, IInteractable
+public class DroppedHat : SwappableObject, IInteractable
 {
     private Sprite _hatSprite;
     private SpriteRenderer _spriterenderer;

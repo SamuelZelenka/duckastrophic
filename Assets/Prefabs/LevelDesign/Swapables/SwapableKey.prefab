@@ -94,7 +94,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: c180a891e0e392e44bff2c8a7eb20465, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: c180a891e0e392e44bff2c8a7eb20465, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -301,8 +302,9 @@ GameObject:
   - component: {fileID: 1602334668520995952}
   - component: {fileID: 2602319898927161486}
   - component: {fileID: 8047450453366485450}
+  - component: {fileID: 8276094482802578222}
   m_Layer: 8
-  m_Name: DroppedKey
+  m_Name: SwapableKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,9 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7696f26041358a42bc612a2d1b631c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highlight: {fileID: 8291790799546572558}
-  _horizontalForce: 2
-  _verticalForce: 4
+  _JumpOnAwake: 0
   _key: 119
   _keyText: {fileID: 7785355711436359483}
 --- !u!61 &2602319898927161486
@@ -439,6 +439,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8276094482802578222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602319898927161474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97aeeeddbce540744812a5549375eeb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  markerCount: 6
+  radius: 1
+  posOffset: {x: 0, y: 0}
 --- !u!1 &5555417245269951948
 GameObject:
   m_ObjectHideFlags: 0

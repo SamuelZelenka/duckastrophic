@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6169816725700842987}
   - component: {fileID: 2174273500664382639}
   m_Layer: 8
-  m_Name: DroppedAction
+  m_Name: SwapableAction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,10 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97aeeeddbce540744812a5549375eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerCount: 3
-  radius: 2
-  _pool: {fileID: 0}
-  _markerPrefab: {fileID: 2370438558143035642, guid: f0b1a5f138d10154d8035b75e6914558, type: 3}
+  markerCount: 6
+  radius: 1
   posOffset: {x: 0, y: 0}
 --- !u!114 &4636907673577341941
 MonoBehaviour:
@@ -199,8 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1eb8a9e80cb6884289984afe4e36bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highlight: {fileID: 0}
-  _isHighlighted: 0
   _JumpOnAwake: 0
   actionIndex: 0
   _actionIconRenderer: {fileID: 6664644259358747389}

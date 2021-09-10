@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class DroppedAction : DroppedObject
+public class SwapableAction : SwappableObject
 {
-    public  int actionIndex;
+    [HideInInspector] public  int actionIndex;
     public readonly IAction[] actions = new IAction[]
     {
         new MoveLeft(),

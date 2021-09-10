@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-public class DroppedKeyCode : DroppedObject
+public class SwapableKey : SwappableObject
 {
     [SerializeField] private KeyCode _key;
     [SerializeField] private TMP_Text _keyText;
