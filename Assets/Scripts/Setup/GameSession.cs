@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
-    enum CoolEnum { CoolName = 32, CoolNameagain = 4, SomeOtherCoolName = 88 }
     public static GameSession Instance => _instance;
 
-    [SerializeField] public ActionBar actionBar;
+    public ActionBar actionBar;
+
+    public int ActionBarCount = 2;
 
     private static GameSession _instance;
     private void Awake()

@@ -18,12 +18,13 @@ public class ActionBar : MonoBehaviour
         { KeyCode.P, KeyCode.None, KeyCode.None }
     };
 
-    [SerializeField] private int _actionSlotCount;
+    
     [SerializeField] private ActionSlot _actionSlotPrefab;
     [SerializeField] private Transform _highlight;
 
     private List<ActionSlot> _actionSlots = new List<ActionSlot>();
     private int _actionSlotIndex;
+    private int _actionSlotCount;
 
     private int ActionSlotIndex 
     {
@@ -48,6 +49,7 @@ public class ActionBar : MonoBehaviour
 
     private void Start()
     {
+        _actionSlotCount = GameSession.Instance.ActionBarCount;
         GameSession.Instance.actionBar = this;
         GenerateActionSlots();
         if (_actionSlotCount > 1)
