@@ -19,9 +19,9 @@ public class PickUp : IAction
     public void TriggerAction()
     {
         AudioManager.Instance.Play(duckQuack);
-        if (PlayerComponentService<InteractionController>.instance.ClosestInteractable != null && PlayerComponentService<InteractionController>.instance.ClosestInteractable.GetType() == typeof(PickUpObject))
+        if (PlayerComponentService<PlayerController>.instance.interactionController.ClosestInteractable != null && PlayerComponentService<PlayerController>.instance.interactionController.ClosestInteractable.GetType() == typeof(PickUpObject))
         {
-            PlayerComponentService<InteractionController>.instance.ClosestInteractable.Interact();
+            PlayerComponentService<PlayerController>.instance.interactionController.ClosestInteractable.Interact();
         }
         else
         {

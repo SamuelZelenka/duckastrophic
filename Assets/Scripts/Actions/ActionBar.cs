@@ -84,7 +84,7 @@ public class ActionBar : MonoBehaviour
     {
         foreach (ActionSlot slot in _actionSlots)
         {
-            if (slot.actionCombo.Action.GetType() == typeof(T))
+            if (slot.actionCombo.Action?.GetType() == typeof(T))
             {
                 return true;
             }

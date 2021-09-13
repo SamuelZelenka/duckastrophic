@@ -16,7 +16,6 @@ public abstract class Movement : IAction
             movementSpeed *= 0.2f;
         }
         PlayerComponentService<Rigidbody2D>.instance.velocity = PlayerComponentService<Rigidbody2D>.instance.velocity + direction * movementSpeed * Time.deltaTime;
-        PlayerComponentService<SpriteRenderer>.instance.flipX = true;
     }
 }
 
@@ -28,7 +27,7 @@ public class MoveLeft : Movement
         if (PlayerComponentService<Rigidbody2D>.instance.velocity.x < 11)
         {
             MoveDirection(-PlayerComponentService<Transform>.instance.right);
-            PlayerComponentService<SpriteRenderer>.instance.flipX = true;
+            PlayerComponentService<PlayerController>.instance.IsFacingRight = false;
         }
     }
     public override Sprite GetSprite()
@@ -47,7 +46,7 @@ public class MoveRight : Movement
         if (PlayerComponentService<Rigidbody2D>.instance.velocity.x < 11)
         {
             MoveDirection(PlayerComponentService<Transform>.instance.right);
-            PlayerComponentService<SpriteRenderer>.instance.flipX = false;
+            PlayerComponentService<PlayerController>.instance.IsFacingRight = true;
         }
     }
     public override Sprite GetSprite()

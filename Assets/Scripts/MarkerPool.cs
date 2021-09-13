@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MarkerPool : MonoBehaviour
 {
-    public int maxPoolSize;
+    [Range(1,100)]public int maxPoolSize;
 
     public MarkerVisual prefab;
 
@@ -19,8 +19,13 @@ public class MarkerPool : MonoBehaviour
         _pool.Release(releaseObject);
     }
 
+    public MarkerVisual InstantiateMarker()
+    {
+        return Instantiate(prefab.gameObject, transform).GetComponent<MarkerVisual>();
+    }
+
     private void Start()
     {
-        _pool = new ObjectPool<MarkerVisual>(() => Instantiate(prefab.gameObject, transform).GetComponent<MarkerVisual>());
+        _pool = new ObjectPool<MarkerVisual>(InstantiateMarker);
     }
 }

@@ -11,23 +11,36 @@ public class PlayerController : MonoBehaviour
     public float pickedUpOffsetY = 0.55f;
     public float pickedUpOffsetX = 0f;
 
-    public bool isFacingRight;
+ 
     public bool isGrounded;
     public AudioClip duckQuack;
     public PickUpObject heldObject = null;
+    public InteractionController interactionController;
 
-
-    [SerializeField] private InteractionController _interactionController;
     [SerializeField] private SpriteRenderer _hatHolder;
+
+    private bool _isFacingRight;
+    public bool IsFacingRight
+    {
+
+        get
+        {
+            return _isFacingRight;
+        }
+        set
+        {
+            _isFacingRight = value;
+            PlayerComponentService<SpriteRenderer>.instance.flipX = !_isFacingRight;
+        }
+
+    }
 
     private void Awake()
     {
-        _interactionController = GetComponent<InteractionController>();
         lastDashTime = dashCooldown;
         new PlayerComponentService<Rigidbody2D>(this);
         new PlayerComponentService<PlayerController>(this);
         new PlayerComponentService<SpriteRenderer>(this);
-        new PlayerComponentService<InteractionController>(this);
         new PlayerComponentService<Transform>(this);
     }
     private void Update()
@@ -35,7 +48,7 @@ public class PlayerController : MonoBehaviour
         GameSession.Instance.actionBar.CheckKeys();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _interactionController.ClosestInteractable?.Interact();
+            interactionController.ClosestInteractable?.Interact();
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -48,8 +61,12 @@ public class PlayerController : MonoBehaviour
         _hatHolder.sprite = hat;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-            isGrounded = true;
+        isGrounded = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isGrounded = false;
     }
 }

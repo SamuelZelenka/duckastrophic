@@ -27,7 +27,7 @@ public abstract class SwappableObject : MonoBehaviour, IInteractable
     }
     public void DisableHighlight()
     {
-        PlayerComponentService<InteractionController>.instance.OnClosestInteractableChange -= DisableHighlight;
+        PlayerComponentService<PlayerController>.instance.interactionController.OnClosestInteractableChange -= DisableHighlight;
         Highlight.ReleaseMarkers();
         IsHighlighted = false;
     }

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[SelectionBase]
 [RequireComponent(typeof(InteractableMarker))]
 public class PickUpObject : MonoBehaviour, IInteractable
 {
@@ -24,7 +24,7 @@ public class PickUpObject : MonoBehaviour, IInteractable
     }
     public void DisableHighlight()
     {
-        PlayerComponentService<InteractionController>.instance.OnClosestInteractableChange -= DisableHighlight;
+        PlayerComponentService<PlayerController>.instance.interactionController.OnClosestInteractableChange -= DisableHighlight;
         Highlight.ReleaseMarkers();
         IsHighlighted = false;
     }
@@ -66,7 +66,7 @@ public class PickUpObject : MonoBehaviour, IInteractable
         _rigidBody.freezeRotation = false;
         _rigidBody.bodyType = RigidbodyType2D.Dynamic;
 
-        if (PlayerComponentService<PlayerController>.instance.isFacingRight)
+        if (PlayerComponentService<PlayerController>.instance.IsFacingRight)
         {
             _rigidBody.AddForce(Vector2.right * 200);
         }
