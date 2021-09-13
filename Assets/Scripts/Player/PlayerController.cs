@@ -11,15 +11,31 @@ public class PlayerController : MonoBehaviour
     public float pickedUpOffsetY = 0.55f;
     public float pickedUpOffsetX = 0f;
 
- 
     public bool isGrounded;
     public AudioClip duckQuack;
     public PickUpObject heldObject = null;
     public InteractionController interactionController;
+    public ActionBar actionBar;
 
     [SerializeField] private SpriteRenderer _hatHolder;
 
     private bool _isFacingRight;
+
+    public KeyCode[,] keyboardLayout = new KeyCode[10, 3]
+    { 
+        //Keyboard layout
+        { KeyCode.Q, KeyCode.A, KeyCode.Z },
+        { KeyCode.W, KeyCode.S, KeyCode.X },
+        { KeyCode.E, KeyCode.D, KeyCode.C },
+        { KeyCode.R, KeyCode.F, KeyCode.V },
+        { KeyCode.T, KeyCode.G, KeyCode.B },
+        { KeyCode.Y, KeyCode.H, KeyCode.N },
+        { KeyCode.U, KeyCode.J, KeyCode.M },
+        { KeyCode.I, KeyCode.K, KeyCode.None },
+        { KeyCode.O, KeyCode.L, KeyCode.None },
+        { KeyCode.P, KeyCode.None, KeyCode.None }
+    };
+
     public bool IsFacingRight
     {
 
@@ -45,14 +61,14 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        GameSession.Instance.actionBar.CheckKeys();
+        PlayerComponentService<PlayerController>.instance.actionBar.CheckKeys();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             interactionController.ClosestInteractable?.Interact();
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            GameSession.Instance.actionBar.SwitchAction();
+            PlayerComponentService<PlayerController>.instance.actionBar.SwitchAction();
         }
     }
     public Sprite GetHat() => _hatHolder.sprite;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpriteReferences : MonoBehaviour
+public class SpriteReferences : Loadable
 {
     [Header("Action Sprites")]
     public Sprite Jump;
@@ -14,7 +14,7 @@ public class SpriteReferences : MonoBehaviour
 
     private static SpriteReferences _instance;
 
-    public void Awake()
+    public override void Initiate()
     {
         DontDestroyOnLoad(this);
         if (_instance == null)
@@ -23,7 +23,7 @@ public class SpriteReferences : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }

@@ -1,45 +1,40 @@
 using UnityEngine;
 
-public class DashRight : IAction
+
+public abstract class Dash : IAction
 {
+    public enum Direction {Left = -1, Right = 1 }
+
     public bool HoldKeyDown { get { return false; } }
-    public void TriggerAction()
+
+    public abstract Sprite GetSprite();
+
+    public virtual void Initiate() { }
+
+    public abstract void TriggerAction();
+
+    public virtual void DashDirection(Direction faceDirection)
     {
         PlayerController playerController = PlayerComponentService<PlayerController>.instance;
         Rigidbody2D rigidbody = PlayerComponentService<Rigidbody2D>.instance;
 
-        // dash right
         if (playerController.lastDashTime + playerController.dashCooldown < Time.time)
         {
-            rigidbody.velocity = new Vector2(playerController.dashForce, playerController.dashForce);
+            rigidbody.velocity = new Vector2(-playerController.dashForce * (float)faceDirection, playerController.dashForce); ;
             playerController.lastDashTime = Time.time;
         }
-    }
-
-    public Sprite GetSprite()
-    {
-        return SpriteReferences.Instance.DashRight;
     }
 }
 
-public class DashLeft : IAction
+public class DashRight : Dash
 {
-    public bool HoldKeyDown { get { return false; } }
-    public void TriggerAction()
-    {
-        PlayerController playerController = PlayerComponentService<PlayerController>.instance;
-        Rigidbody2D rigidbody = PlayerComponentService<Rigidbody2D>.instance;
+    public override void TriggerAction() => DashDirection(Direction.Right);
+    public override Sprite GetSprite() => SpriteReferences.Instance.DashRight;
+}
 
-        // dash left
-        if (playerController.lastDashTime + playerController.dashCooldown < Time.time)
-        {
-            rigidbody.velocity = new Vector2(-playerController.dashForce, playerController.dashForce);
-            playerController.lastDashTime = Time.time;
-        }
-    }
+public class DashLeft : Dash
+{
+    public override void TriggerAction() => DashDirection(Direction.Left);
 
-    public Sprite GetSprite()
-    {
-        return SpriteReferences.Instance.DashLeft;
-    }
+    public override Sprite GetSprite() => SpriteReferences.Instance.DashLeft;
 }

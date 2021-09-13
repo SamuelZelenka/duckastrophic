@@ -8,6 +8,7 @@ public abstract class Movement : IAction
 
     public abstract void TriggerAction();
 
+    public void Initiate() { }
     protected virtual void MoveDirection(Vector2 direction)
     {
         float movementSpeed = PlayerComponentService<PlayerController>.instance.movementSpeed;

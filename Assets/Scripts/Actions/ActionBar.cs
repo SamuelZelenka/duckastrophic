@@ -3,28 +3,12 @@ using UnityEngine;
 
 public class ActionBar : MonoBehaviour
 {
-    private readonly KeyCode[,] keyboardLayout = new KeyCode[10, 3] 
-    { 
-        //Keyboard layout
-        { KeyCode.Q, KeyCode.A, KeyCode.Z },
-        { KeyCode.W, KeyCode.S, KeyCode.X },
-        { KeyCode.E, KeyCode.D, KeyCode.C },
-        { KeyCode.R, KeyCode.F, KeyCode.V },
-        { KeyCode.T, KeyCode.G, KeyCode.B },
-        { KeyCode.Y, KeyCode.H, KeyCode.N },
-        { KeyCode.U, KeyCode.J, KeyCode.M },
-        { KeyCode.I, KeyCode.K, KeyCode.None },
-        { KeyCode.O, KeyCode.L, KeyCode.None },
-        { KeyCode.P, KeyCode.None, KeyCode.None }
-    };
-
-    
     [SerializeField] private ActionSlot _actionSlotPrefab;
     [SerializeField] private Transform _highlight;
+    [SerializeField, Range(1,10)] private int _actionSlotCount = 1;
 
-    private List<ActionSlot> _actionSlots = new List<ActionSlot>();
+    [HideInInspector] public List<ActionSlot> actionSlots = new List<ActionSlot>();
     private int _actionSlotIndex;
-    private int _actionSlotCount;
 
     private int ActionSlotIndex 
     {
@@ -34,12 +18,12 @@ public class ActionBar : MonoBehaviour
         }
         set
         {
-            _actionSlots[_actionSlotIndex].highlight.enabled = false;
+            actionSlots[_actionSlotIndex].highlight.enabled = false;
 
-            _actionSlotIndex = value % _actionSlots.Count;
+            _actionSlotIndex = value % actionSlots.Count;
             if (_actionSlotIndex < 0)
             {
-                _actionSlotIndex = _actionSlots.Count - 1;
+                _actionSlotIndex = actionSlots.Count - 1;
             }
 
 
@@ -47,30 +31,34 @@ public class ActionBar : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        _actionSlotCount = GameSession.Instance.ActionBarCount;
-        GameSession.Instance.actionBar = this;
-        GenerateActionSlots();
+        PlayerComponentService<PlayerController>.instance.actionBar = this;
+        GenerateActionSlots(ref PlayerComponentService<PlayerController>.instance.keyboardLayout);
         if (_actionSlotCount == 1)
         {
-            _actionSlots[0].actionCombo.Action = new MoveRight();
+            actionSlots[0].actionCombo.Action = new MoveRight();
         }
         if (_actionSlotCount > 1)
         {
-            _actionSlots[0].actionCombo.Action = new MoveLeft();
-            _actionSlots[1].actionCombo.Action = new MoveRight();
+            actionSlots[0].actionCombo.Action = new MoveLeft();
+            actionSlots[1].actionCombo.Action = new MoveRight();
         }
-        _actionSlots[0].highlight.enabled = true;
+        actionSlots[0].highlight.enabled = true;
     }
-    public void SetKey(KeyCode key) => _actionSlots[_actionSlotIndex].actionCombo.Key = key;
-    public void SetAction(IAction action) => _actionSlots[_actionSlotIndex].actionCombo.Action = action;
-    public KeyCode GetKey() => _actionSlots[_actionSlotIndex].actionCombo.Key;
-    public IAction GetAction() => _actionSlots[_actionSlotIndex].actionCombo.Action;
+
+    public KeyCode GetKey() => actionSlots[_actionSlotIndex].actionCombo.Key;
+    public IAction GetAction() => actionSlots[_actionSlotIndex].actionCombo.Action;
+    public void SetKey(KeyCode key) => actionSlots[_actionSlotIndex].actionCombo.Key = key;
+    public void SetAction(IAction action)
+    {
+        action.Initiate();
+        actionSlots[_actionSlotIndex].actionCombo.Action = action;
+    }
 
     public void CheckKeys()
     {
-        foreach (ActionSlot actionSlot in _actionSlots)
+        foreach (ActionSlot actionSlot in actionSlots)
         {
             actionSlot.CheckInput();
         }
@@ -78,11 +66,11 @@ public class ActionBar : MonoBehaviour
     public void SwitchAction()
     {
             ActionSlotIndex += Input.GetKey(KeyCode.LeftShift) ? -1 : 1;
-            _actionSlots[_actionSlotIndex].highlight.enabled = true;
+            actionSlots[_actionSlotIndex].highlight.enabled = true;
     }
     public bool ContainsAction<T>() where T : IAction
     {
-        foreach (ActionSlot slot in _actionSlots)
+        foreach (ActionSlot slot in actionSlots)
         {
             if (slot.actionCombo.Action?.GetType() == typeof(T))
             {
@@ -92,7 +80,7 @@ public class ActionBar : MonoBehaviour
         return false;
     }
 
-    private void GenerateActionSlots()
+    private void GenerateActionSlots(ref KeyCode[,] keyboardLayout)
     {
         List<Vector2Int> keyboardPositions = new List<Vector2Int>();
         keyboardPositions.Add(GetRandomKeyPos(0, _actionSlotCount, 0));
@@ -106,9 +94,10 @@ public class ActionBar : MonoBehaviour
         {
             ActionSlot newSlot = Instantiate(_actionSlotPrefab, transform);
             newSlot.name = $"Action Slot {i}";
-            _actionSlots.Add(newSlot);
+            actionSlots.Add(newSlot);
 
             newSlot.actionCombo = new ActionCombo(keyboardLayout[keyboardPositions[i].x, keyboardPositions[i].y], null, newSlot.onValueChanged);
+            keyboardLayout[keyboardPositions[i].x, keyboardPositions[i].y] = KeyCode.None;
 
             newSlot.onValueChanged?.Invoke();
         }

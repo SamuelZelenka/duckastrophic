@@ -3,21 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-public class SwapableKey : SwappableObject
+public class SwapableKey : SwapableObject
 {
     [SerializeField] private KeyCode _key;
     [SerializeField] private TMP_Text _keyText;
 
-    protected override void Awake()
+
+    protected void Start()
     {
-        base.Awake();
-        _key = (KeyCode)UnityEngine.Random.Range(97, 122);
+        KeyCode randomKey;
+        int safety = 0;
+        do
+        {
+            int randomX, randomY;
+            randomX = UnityEngine.Random.Range(0, PlayerComponentService<PlayerController>.instance.keyboardLayout.GetLength(0));
+            randomY = UnityEngine.Random.Range(0, PlayerComponentService<PlayerController>.instance.keyboardLayout.GetLength(1));
+
+            randomKey = PlayerComponentService<PlayerController>.instance.keyboardLayout[randomX, randomY];
+            for (int i = 0; i < PlayerComponentService<PlayerController>.instance.actionBar.actionSlots.Count; i++)
+            {
+                if (PlayerComponentService<PlayerController>.instance.actionBar.actionSlots[i].actionCombo.Key == randomKey)
+                {
+                    randomKey = KeyCode.None;
+                }
+            }
+            if (randomKey != KeyCode.None)
+            {
+                PlayerComponentService<PlayerController>.instance.keyboardLayout[randomX, randomY] = KeyCode.None;
+                break;
+            }
+
+            safety++;
+            if (safety > 1000)
+            {
+                Debug.Log("Safety triggered");
+            }
+        } while (randomKey == KeyCode.None || safety > 1000);
+
+        _key = randomKey;
         _keyText.text = _key.ToString();
     }
     public override void Interact()
     {
-        KeyCode newKey = GameSession.Instance.actionBar.GetKey();
-        GameSession.Instance.actionBar.SetKey(_key);
+        KeyCode newKey = PlayerComponentService<PlayerController>.instance.actionBar.GetKey();
+        PlayerComponentService<PlayerController>.instance.actionBar.SetKey(_key);
         if (newKey == KeyCode.None)
         {
             Destroy(gameObject);

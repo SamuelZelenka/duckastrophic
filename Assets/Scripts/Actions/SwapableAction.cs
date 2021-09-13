@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SwapableAction : SwappableObject
+public class SwapableAction : SwapableObject
 {
     [HideInInspector] public  int actionIndex;
     public readonly IAction[] actions = new IAction[]
@@ -19,8 +19,8 @@ public class SwapableAction : SwappableObject
     }
     public override void Interact()
     {
-        IAction newAction = GameSession.Instance.actionBar.GetAction();
-        GameSession.Instance.actionBar.SetAction(actions[actionIndex]);
+        IAction newAction = PlayerComponentService<PlayerController>.instance.actionBar.GetAction();
+        PlayerComponentService<PlayerController>.instance.actionBar.SetAction(actions[actionIndex]);
         if (newAction == null)
         {
             Destroy(gameObject);

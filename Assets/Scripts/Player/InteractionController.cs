@@ -6,7 +6,7 @@ public class InteractionController : MonoBehaviour
     public delegate void InteractionHandler();
     public InteractionHandler OnClosestInteractableChange;
 
-    private List<Collider2D> _interactablesInRange = new List<Collider2D>();
+    private List<IInteractable> _interactablesInRange = new List<IInteractable>();
 
     private IInteractable _closestInteractable;
     public IInteractable ClosestInteractable
@@ -28,32 +28,37 @@ public class InteractionController : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
-        {
-            _interactablesInRange.Add(collision);
-        }
-    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         FindClosestInteractable();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<IInteractable>() != null && collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
+        {
+            _interactablesInRange.Add(collision.GetComponent<IInteractable>());
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _interactablesInRange.Remove(collision);
+        IInteractable interactable = collision.GetComponent<IInteractable>();
+        if (_interactablesInRange.Contains(interactable))
+        {
+            interactable.DisableHighlight();
+            _interactablesInRange.Remove(collision.GetComponent<IInteractable>());
+        }
+       
     }
 
     private void FindClosestInteractable()
     {
         if (_interactablesInRange.Count > 0)
         {
-            ClosestInteractable = _interactablesInRange[0].GetComponent<IInteractable>();
+            ClosestInteractable = _interactablesInRange[0];
 
             for (int i = 0; i < _interactablesInRange.Count; i++)
             {
-                IInteractable interactable = _interactablesInRange[i].GetComponent<IInteractable>();
+                IInteractable interactable = _interactablesInRange[i];
 
                 if (Vector3.Distance(interactable.Transform.position, transform.position) < Vector3.Distance(ClosestInteractable.Transform.position, transform.position) && interactable.IsInteractable())
                 {
