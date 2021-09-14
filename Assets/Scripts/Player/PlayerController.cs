@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             _isFacingRight = value;
-            PlayerComponentService<SpriteRenderer>.instance.flipX = !_isFacingRight;
+            transform.localScale = _isFacingRight ? new Vector3(1, 1, 1) : new Vector3(-1,1,1);
         }
 
     }
