@@ -1,9 +1,11 @@
-using System.Collections;
+using System.Collections; //unused namespace
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableMarker : MonoBehaviour
 {
+    //sorting variables stuff
+
     [Range(0, 25)] public int markerCount = 3;
 
     public float radius = 1;
@@ -45,7 +47,6 @@ public class InteractableMarker : MonoBehaviour
                 return pools[i];
             }
         }
-
         return new  GameObject().AddComponent<MarkerPool>();
     }
 

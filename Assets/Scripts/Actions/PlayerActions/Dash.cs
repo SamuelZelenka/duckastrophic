@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public abstract class Dash : IAction
 {
     public enum Direction {Left = -1, Right = 1 }
@@ -35,6 +34,5 @@ public class DashRight : Dash
 public class DashLeft : Dash
 {
     public override void TriggerAction() => DashDirection(Direction.Left);
-
     public override Sprite GetSprite() => SpriteReferences.Instance.DashLeft;
 }

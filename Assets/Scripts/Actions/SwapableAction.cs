@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SwapableAction : SwapableObject
 {
+    // sort variables logically
     [HideInInspector] public  int actionIndex;
     public readonly IAction[] actions = new IAction[]
     {
@@ -13,11 +14,11 @@ public class SwapableAction : SwapableObject
         new PickUp()
     };
     [SerializeField] private SpriteRenderer _actionIconRenderer;
-    protected void Start()
+    protected void Start() // lambda operator stuffs
     {
         _actionIconRenderer.sprite = actions[actionIndex].GetSprite();
     }
-    public override void Interact()
+    public override void Interact() //Make playercontroller varaible for readability
     {
         IAction newAction = PlayerComponentService<PlayerController>.instance.actionBar.GetAction();
         PlayerComponentService<PlayerController>.instance.actionBar.SetAction(actions[actionIndex]);

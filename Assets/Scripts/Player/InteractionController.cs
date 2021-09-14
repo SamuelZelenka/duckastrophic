@@ -28,7 +28,9 @@ public class InteractionController : MonoBehaviour
             }
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+
+    // Can we find interactables without using physics to make it cheaper?
+    private void OnTriggerStay2D(Collider2D collision) // lambda stuff
     {
         FindClosestInteractable();
     }
@@ -47,7 +49,6 @@ public class InteractionController : MonoBehaviour
             interactable.DisableHighlight();
             _interactablesInRange.Remove(collision.GetComponent<IInteractable>());
         }
-       
     }
 
     private void FindClosestInteractable()
@@ -68,8 +69,7 @@ public class InteractionController : MonoBehaviour
             if (ClosestInteractable.IsInteractable())
             {
                 ClosestInteractable.EnableHighlight();
-            }
-                
+            } 
             return;
         }
         ClosestInteractable = null;

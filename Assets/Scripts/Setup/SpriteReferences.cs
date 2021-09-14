@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SpriteReferences : Loadable
 {
+    //Is there a better way to get these references?
     [Header("Action Sprites")]
     public Sprite Jump;
     public Sprite MoveLeft;

@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+public class SceneMerger : MonoBehaviour
 {
     [Header("Additive Scenes")]
     [SerializeField] private string[] _scenes;
 
-    private void Awake()
+    private void Awake() // lambda stuff
     {
         MergeScenes();
     }

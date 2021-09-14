@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(InteractableMarker))]
 public abstract class SwapableObject : MonoBehaviour, IInteractable
 {
+    //clean up the variable order.
     public InteractableMarker Highlight { get; set; }
     public bool IsHighlighted { get; private set; }
 
@@ -11,7 +12,7 @@ public abstract class SwapableObject : MonoBehaviour, IInteractable
 
     protected virtual void Awake()
     {
-        if (_JumpOnAwake)
+        if (_JumpOnAwake) //Do we need this feature?
         {
             DroppedInteraction.ApplyDropForce(GetComponent<Rigidbody2D>());
         }
@@ -32,8 +33,5 @@ public abstract class SwapableObject : MonoBehaviour, IInteractable
         IsHighlighted = false;
     }
 
-    public bool IsInteractable()
-    {
-        return true;
-    }
+    public bool IsInteractable() => true;
 }

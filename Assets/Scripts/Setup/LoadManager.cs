@@ -1,11 +1,11 @@
-using System.Collections;
+using System.Collections; //unused namespace
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadManager : MonoBehaviour
 {
-
+    //Sort variables
     public static LoadManager Instance;
     public List<Loadable> loadables = new List<Loadable>();
 
@@ -33,6 +33,8 @@ public class LoadManager : MonoBehaviour
 
     public void AddLoadable(Loadable loadable) => loadables.Add(loadable);
 }
+
+// Separate script?
 public abstract class Loadable : MonoBehaviour
 {
     public abstract void Initiate();

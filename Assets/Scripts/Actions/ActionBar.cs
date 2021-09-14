@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class ActionBar : MonoBehaviour
 {
+    //Sort variable order
+
     [SerializeField] private ActionSlot _actionSlotPrefab;
-    [SerializeField] private Transform _highlight;
-    [SerializeField, Range(1,10)] private int _actionSlotCount = 1;
+    [SerializeField] private Transform _highlight; //unused varaible
+    [SerializeField, Range(1,10)] private int _actionSlotCount = 1; // change range to (1,7) as 7 is max count on the keyboard
 
     [HideInInspector] public List<ActionSlot> actionSlots = new List<ActionSlot>();
     private int _actionSlotIndex;
@@ -110,19 +112,20 @@ public class ActionBar : MonoBehaviour
         int layoutPosX = 0;
         int layoutPosY = 0;
 
-        if (minXPos < MAX_KEYS_ROW_3)
+        // Determine which row the next generated key can appear on.
+        if (minXPos < MAX_KEYS_ROW_3) //Can key fit on Z-M row?
         {
             layoutPosY = Random.Range(0, 3);
         }
-        else if (minXPos < MAX_KEYS_ROW_2)
+        else if (minXPos < MAX_KEYS_ROW_2) //Can key fit on A-L row? (Scandinavian keyboards excluded)
         {
             layoutPosY = Random.Range(0, 2);
         }
 
-        // Max keys in a row on a standard QWERTY-keyboard is 7
+        // Max keys in a row on a standard QWERTY-keyboard is 7 (Z-M)
         Mathf.Clamp(maxKeycount, 0, 7);
 
-        switch (layoutPosY)
+        switch (layoutPosY) 
         {
             case 0:
                 layoutPosX = Random.Range(minXPos, MAX_KEYS_ROW_1 - maxKeycount + keyCount);

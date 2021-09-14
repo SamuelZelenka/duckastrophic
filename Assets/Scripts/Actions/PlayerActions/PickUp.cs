@@ -1,13 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic; //Remove unused namespaces
 using UnityEngine;
 
 public class PickUp : IAction
 {
+    //Sort variables public , [serializedfield], private
+    private Rigidbody2D _rigidBody; // Is the Action responsible for the Rigidbody?
 
-    private Rigidbody2D _rigidBody;
-
-    public AudioClip duckQuack;
+    public AudioClip duckQuack; // Make an Audio library to hold audioclips? Variable name can be improved on what kind of variable it is. 
 
     public bool HoldKeyDown { get { return false; } }
 
@@ -37,12 +37,12 @@ public class PickUp : IAction
         }
     }
 
-    public Sprite GetSprite()
+    public Sprite GetSprite() //Make one line using lambda operator
     {
         return SpriteReferences.Instance.PickUpObject;
     }
 
-    public void AssignHeldObject(PickUpObject pickUpObject)
+    public void AssignHeldObject(PickUpObject pickUpObject) //Make one line using lambda operator
     {
         _playerController.heldObject = pickUpObject;
     }
@@ -53,7 +53,7 @@ public class PickUp : IAction
         {
             DropObject();
         }
-        if (PlayerComponentService<PlayerController>.instance.actionBar.ContainsAction<PickUp>())
+        if (PlayerComponentService<PlayerController>.instance.actionBar.ContainsAction<PickUp>()) //Create Actionbar as a variable as it is used twice. For readability
         {
             _playerController.heldObject = pickUpObject;
             PlayerComponentService<PlayerController>.instance.actionBar.GetAction();
@@ -67,6 +67,7 @@ public class PickUp : IAction
             _rigidBody.velocity = new Vector2(0, 0);
         }
     }
+
     private void DropObject()
     {
         Collider2D heldObjectCollider = _playerController.heldObject.GetComponent<Collider2D>();
@@ -86,5 +87,4 @@ public class PickUp : IAction
 
        _playerController.heldObject = null;
     }
-
 }

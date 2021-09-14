@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ActionSlot : MonoBehaviour
 {
-    public ActionCombo.ActionHandler onValueChanged;
+    public ActionCombo.ActionHandler onValueChanged; //Should be UpperCase O
     
     public ActionCombo actionCombo;
     public Image highlight;
@@ -37,9 +37,7 @@ public class ActionSlot : MonoBehaviour
                 actionCombo.Action.TriggerAction();
             }
         }
-
     }
-
 
     private void UpdateVisuals()
     {

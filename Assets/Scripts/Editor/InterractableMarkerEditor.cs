@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+using System.Collections.Generic; //unused namespace
 using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(InteractableMarker))]
 public class InteractableMarkerEditor : Editor
 {
-    InteractableMarker marker;
-    void OnEnable()
+    InteractableMarker marker; //private and naming is inconsistent
+    void OnEnable() //lambda
     {
         marker = this.target as InteractableMarker;
     }

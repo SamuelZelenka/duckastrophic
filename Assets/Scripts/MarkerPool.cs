@@ -19,12 +19,12 @@ public class MarkerPool : MonoBehaviour
         _pool.Release(releaseObject);
     }
 
-    public MarkerVisual InstantiateMarker()
+    public MarkerVisual InstantiateMarker() // lambda stuff
     {
         return Instantiate(prefab.gameObject, transform).GetComponent<MarkerVisual>();
     }
 
-    private void Start()
+    private void Start() // lambda stuff
     {
         _pool = new ObjectPool<MarkerVisual>(InstantiateMarker);
     }

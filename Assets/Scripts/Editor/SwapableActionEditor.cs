@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
+using UnityEngine; //remove unused namespaces
+
+//add #if UNITYEDITOR stuffs
 
 [CustomEditor(typeof(SwapableAction)), CanEditMultipleObjects]
 public class SwapableActionEditor : Editor
 {
     private SerializedProperty _actionIndex;
 
-    void OnEnable()
+    void OnEnable() // lambda operator
     {
         _actionIndex = serializedObject.FindProperty("actionIndex");
     }

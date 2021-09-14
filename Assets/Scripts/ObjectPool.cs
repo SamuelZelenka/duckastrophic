@@ -8,11 +8,11 @@ public class ObjectPool<T> where T : new()
 
     private Queue<T> _pool = new Queue<T>();
 
-    public ObjectPool()
+    public ObjectPool() // lambda stuff
     {
         OnCreate = () => new T();
     }
-    public ObjectPool(Func<T> createFunction)
+    public ObjectPool(Func<T> createFunction) // lambda stuff
     {
         OnCreate = createFunction.Invoke;
     }
@@ -31,7 +31,7 @@ public class ObjectPool<T> where T : new()
         }
         return poolObject;
     }
-    public void Release(T returnObject)
+    public void Release(T returnObject) // lambda stuff
     {
         _pool.Enqueue(returnObject);
     }

@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     public bool IsFacingRight
     {
-
         get
         {
             return _isFacingRight;
@@ -48,7 +47,6 @@ public class PlayerController : MonoBehaviour
             _isFacingRight = value;
             transform.localScale = _isFacingRight ? new Vector3(1, 1, 1) : new Vector3(-1,1,1);
         }
-
     }
 
     private void Awake()
@@ -59,6 +57,7 @@ public class PlayerController : MonoBehaviour
         new PlayerComponentService<SpriteRenderer>(this);
         new PlayerComponentService<Transform>(this);
     }
+
     private void Update()
     {
         PlayerComponentService<PlayerController>.instance.actionBar.CheckKeys();
@@ -71,17 +70,19 @@ public class PlayerController : MonoBehaviour
             PlayerComponentService<PlayerController>.instance.actionBar.SwitchAction();
         }
     }
+
     public Sprite GetHat() => _hatHolder.sprite;
-    public void SwapHat(ref Sprite hat)
+
+    public void SwapHat(ref Sprite hat) //Lambda stuff
     {
         _hatHolder.sprite = hat;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision) //Lambda stuff
     {
         isGrounded = true;
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision) //Lambda stuff
     {
         isGrounded = false;
     }
