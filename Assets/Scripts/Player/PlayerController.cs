@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public ActionBar actionBar;
 
     [SerializeField] private SpriteRenderer _hatHolder;
+    [SerializeField] private Collider2D _groundDetector;
 
     private bool _isFacingRight;
 
@@ -78,17 +79,23 @@ public class PlayerController : MonoBehaviour
 
     public Sprite GetHat() => _hatHolder.sprite;
 
-    public void SwapHat(Sprite hat) //Lambda stuff
+    public void SwapHat(Sprite hat) => _hatHolder.sprite = hat;
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        _hatHolder.sprite = hat;
+        if (_groundDetector.IsTouching(collision))
+        {
+            isGrounded = true;
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D collision) //Lambda stuff
-    {
-        isGrounded = true;
-    }
-    private void OnTriggerExit2D(Collider2D collision) //Lambda stuff
-    {
-        isGrounded = false;
-    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+	{
+        if (!_groundDetector.IsTouching(collision))
+        {
+            isGrounded = false;
+        }
+	}
+
 }
