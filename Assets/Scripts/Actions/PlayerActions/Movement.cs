@@ -2,19 +2,25 @@ using UnityEngine;
 
 public abstract class Movement : IAction
 {
+    public PlayerController player = PlayerComponentService<PlayerController>.instance;
+    public Rigidbody2D rigidbody = PlayerComponentService<Rigidbody2D>.instance;
+
     public abstract bool HoldKeyDown { get; }
     public abstract void TriggerAction();
 
     public void Initiate() { }
-    protected virtual void MoveDirection(Vector2 direction)
+    protected virtual void MoveDirection(Direction direction)
     {
-        float movementSpeed = PlayerComponentService<PlayerController>.instance.movementSpeed; //add playerController variable for readability
-        if (!PlayerComponentService<PlayerController>.instance.isGrounded) //Can we make this feel better somehow?!
+        float movementSpeed = player.acceleration;
+
+        if (!player.isGrounded)
         {
-            movementSpeed *= 0.2f;
+            movementSpeed = 0.3f;
         }
+
+        player.FaceDirection = direction; 
         PlayerComponentService<Animator>.instance.SetBool("Running", true);
-        PlayerComponentService<Rigidbody2D>.instance.velocity = PlayerComponentService<Rigidbody2D>.instance.velocity + direction * movementSpeed * Time.deltaTime; //add rigidbody variable for readability
+        rigidbody.velocity = rigidbody.velocity + Vector2.right * (float)direction * movementSpeed * Time.deltaTime;
     }
 }
 
@@ -23,10 +29,9 @@ public class MoveLeft : Movement
     public override bool HoldKeyDown { get { return true; } }
     public override void TriggerAction()
     {
-        if (PlayerComponentService<Rigidbody2D>.instance.velocity.x < 11)
+        if (rigidbody.velocity.x < player.maxVelocity)
         {
-            MoveDirection(-PlayerComponentService<Transform>.instance.right); //Change to Vector3.left for readability
-            PlayerComponentService<PlayerController>.instance.IsFacingRight = false;
+            MoveDirection(Direction.Left);
         }
     }
 }
@@ -36,12 +41,9 @@ public class MoveRight : Movement
     public override bool HoldKeyDown { get { return true; } }
     public override void TriggerAction()
     {
-        // Gör 11 till en variabel (const eller en max velocity) för att göra det tydligt vad 11 är för något
-        // gör en metod för move
-        if (PlayerComponentService<Rigidbody2D>.instance.velocity.x < 11)
+        if (rigidbody.velocity.x < player.maxVelocity)
         {
-            MoveDirection(PlayerComponentService<Transform>.instance.right); //Change to Vector3.right for readability
-            PlayerComponentService<PlayerController>.instance.IsFacingRight = true;
+            MoveDirection(Direction.Right);
         }
     }
 }

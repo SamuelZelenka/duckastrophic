@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickUp : IAction
 {
     //Sort variables public , [serializedfield], private
-    private Rigidbody2D _rigidBody; // Is the Action responsible for the Rigidbody?
+    private Rigidbody2D _rigidbody; // Is the Action responsible for the Rigidbody?
 
     public AudioClip duckQuack; // Make an Audio library to hold audioclips? Variable name can be improved on what kind of variable it is. 
 
@@ -29,7 +29,7 @@ public class PickUp : IAction
             PickUpObject pickUpObject = (PickUpObject)_interactionController.ClosestInteractable;
             PickUpObject(pickUpObject);
             _interactionController.ClosestInteractable.Interact();
-            _rigidBody = pickUpObject.GetComponent<Rigidbody2D>();
+            _rigidbody = pickUpObject.GetComponent<Rigidbody2D>();
         }
         else
         {
@@ -70,16 +70,8 @@ public class PickUp : IAction
         heldObjectCollider.enabled = true;
         heldObjectCollider.attachedRigidbody.freezeRotation = false;
         heldObjectCollider.attachedRigidbody.bodyType = RigidbodyType2D.Dynamic;
+        heldObjectCollider.attachedRigidbody.AddForce(Vector2.right * (float)_playerController.FaceDirection * 200);
 
-        if (_playerController.IsFacingRight)
-        {
-            heldObjectCollider.attachedRigidbody.AddForce(Vector2.right * 200);
-        }
-        else
-        {
-            heldObjectCollider.attachedRigidbody.AddForce(Vector2.left * 200);
-        }
-
-       _playerController.heldObject = null;
+        _playerController.heldObject = null;
     }
 }

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float movementSpeed = 10f;
+    public float acceleration = 10f;
+    public float maxVelocity = 9f;
     public float jumpForce = 200f;
     public float dashForce = 10f;
     public float lastDashTime = 0f;
@@ -16,11 +17,12 @@ public class PlayerController : MonoBehaviour
     public PickUpObject heldObject = null;
     public InteractionController interactionController;
     public ActionBar actionBar;
+    public Rigidbody2D rigidbody;
 
     [SerializeField] private SpriteRenderer _hatHolder;
     [SerializeField] private Collider2D _groundDetector;
 
-    private bool _isFacingRight;
+    private Direction _faceDirection;
 
     public KeyCode[,] keyboardLayout = new KeyCode[10, 3]
     { 
@@ -37,22 +39,23 @@ public class PlayerController : MonoBehaviour
         { KeyCode.P, KeyCode.None, KeyCode.None }
     };
 
-    public bool IsFacingRight
+    public Direction FaceDirection
     {
         get
         {
-            return _isFacingRight;
+            return _faceDirection;
         }
         set
         {
-            _isFacingRight = value;
-            transform.localScale = _isFacingRight ? new Vector3(1, 1, 1) : new Vector3(-1,1,1);
+            _faceDirection = value;
+            transform.localScale = _faceDirection == Direction.Right ? new Vector3(1, 1, 1) : new Vector3(-1,1,1);
         }
     }
 
     private void Awake()
     {
         lastDashTime = dashCooldown;
+        rigidbody = GetComponent<Rigidbody2D>();
         new PlayerComponentService<Rigidbody2D>(this);
         new PlayerComponentService<PlayerController>(this);
         new PlayerComponentService<SpriteRenderer>(this);
@@ -63,10 +66,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         actionBar.CheckKeys();
-        if (GetComponent<Rigidbody2D>().velocity.x < 0.1f && GetComponent<Rigidbody2D>().velocity.x > -0.1f)
-        {
-            GetComponent<Animator>().SetBool("Running", false);
-        }
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             interactionController.ClosestInteractable?.Interact();
@@ -77,25 +77,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public Sprite GetHat() => _hatHolder.sprite;
-
-    public void SwapHat(Sprite hat) => _hatHolder.sprite = hat;
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void FixedUpdate()
     {
-        if (_groundDetector.IsTouching(collision))
+        if (GetComponent<Rigidbody2D>().velocity.x < 0.1f && GetComponent<Rigidbody2D>().velocity.x > -0.1f)
+        {
+            GetComponent<Animator>().SetBool("Running", false);
+        }
+        if (rigidbody.velocity.y <= 0.1f && rigidbody.velocity.y >= -0.1f)
         {
             isGrounded = true;
         }
-    }
-
-
-    private void OnTriggerExit2D(Collider2D collision)
-	{
-        if (!_groundDetector.IsTouching(collision))
+        else
         {
             isGrounded = false;
         }
-	}
+    }
 
+    public Sprite GetHat() => _hatHolder.sprite;
+
+    public void SwapHat(Sprite hat) => _hatHolder.sprite = hat;
 }

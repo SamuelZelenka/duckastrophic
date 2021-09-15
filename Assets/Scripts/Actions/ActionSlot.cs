@@ -31,6 +31,7 @@ public class ActionSlot : MonoBehaviour
                 TriggerAction(Input.GetKeyDown(actionCombo.Key));
             }
         }
+
         void TriggerAction(bool input)
         {
             if (input && actionCombo.Action != null)

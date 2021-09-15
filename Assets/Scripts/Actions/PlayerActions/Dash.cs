@@ -2,8 +2,6 @@ using UnityEngine;
 
 public abstract class Dash : IAction
 {
-    public enum Direction {Left = -1, Right = 1 }
-
     public bool HoldKeyDown { get { return false; } }
 
     public virtual void Initiate() { }
