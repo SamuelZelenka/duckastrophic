@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float acceleration = 10f;
-    public float maxVelocity = 9f;
-    public float jumpForce = 200f;
-    public float dashForce = 10f;
-    public float lastDashTime = 0f;
-    public float dashCooldown = 5f;
+    public float acceleration;
+    public float maxVelocity;
+    public float jumpForce;
+    public float dashForce;
+    public float lastDashTime;
+    public float dashCooldown;
 
     public float pickedUpOffsetY = 0.55f;
     public float pickedUpOffsetX = 0f;
@@ -17,10 +17,9 @@ public class PlayerController : MonoBehaviour
     public PickUpObject heldObject = null;
     public InteractionController interactionController;
     public ActionBar actionBar;
-    public Rigidbody2D rigidbody;
 
+    private Rigidbody2D _rigidbody;
     [SerializeField] private SpriteRenderer _hatHolder;
-    [SerializeField] private Collider2D _groundDetector;
 
     private Direction _faceDirection;
 
@@ -55,7 +54,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         lastDashTime = dashCooldown;
-        rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         new PlayerComponentService<Rigidbody2D>(this);
         new PlayerComponentService<PlayerController>(this);
         new PlayerComponentService<SpriteRenderer>(this);
@@ -79,11 +78,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GetComponent<Rigidbody2D>().velocity.x < 0.1f && GetComponent<Rigidbody2D>().velocity.x > -0.1f)
+        if (_rigidbody.velocity.x < 0.1f &&_rigidbody.velocity.x > -0.1f)
         {
             GetComponent<Animator>().SetBool("Running", false);
         }
-        if (rigidbody.velocity.y <= 0.1f && rigidbody.velocity.y >= -0.1f)
+        if (_rigidbody.velocity.y <= 0.1f && _rigidbody.velocity.y >= -0.1f)
         {
             isGrounded = true;
         }

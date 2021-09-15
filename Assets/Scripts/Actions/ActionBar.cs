@@ -4,13 +4,12 @@ using UnityEngine;
 public class ActionBar : MonoBehaviour
 {
     //Sort variable order
-
-    [SerializeField] private ActionSlot _actionSlotPrefab;
-    [SerializeField] private Transform _highlight; //unused varaible
-    [SerializeField, Range(1,10)] private int _actionSlotCount = 1; // change range to (1,7) as 7 is max count on the keyboard
-
     [HideInInspector] public List<ActionSlot> actionSlots = new List<ActionSlot>();
+
     private int _actionSlotIndex;
+
+    [SerializeField, Range(1,7)] private int _actionSlotCount = 1;
+    [SerializeField] private ActionSlot _actionSlotPrefab;
 
     private int ActionSlotIndex 
     {
@@ -49,13 +48,13 @@ public class ActionBar : MonoBehaviour
         actionSlots[0].highlight.enabled = true;
     }
 
-    public KeyCode GetKey() => actionSlots[_actionSlotIndex].actionCombo.Key;
-    public IAction GetAction() => actionSlots[_actionSlotIndex].actionCombo.Action;
-    public void SetKey(KeyCode key) => actionSlots[_actionSlotIndex].actionCombo.Key = key;
+    public KeyCode GetKey() => actionSlots[ActionSlotIndex].actionCombo.Key;
+    public IAction GetAction() => actionSlots[ActionSlotIndex].actionCombo.Action;
+    public void SetKey(KeyCode key) => actionSlots[ActionSlotIndex].actionCombo.Key = key;
     public void SetAction(IAction action)
     {
         action.Initiate();
-        actionSlots[_actionSlotIndex].actionCombo.Action = action;
+        actionSlots[ActionSlotIndex].actionCombo.Action = action;
     }
 
     public void CheckKeys()
@@ -68,7 +67,7 @@ public class ActionBar : MonoBehaviour
     public void SwitchAction()
     {
             ActionSlotIndex += Input.GetKey(KeyCode.LeftShift) ? -1 : 1;
-            actionSlots[_actionSlotIndex].highlight.enabled = true;
+            actionSlots[ActionSlotIndex].highlight.enabled = true;
     }
     public bool ContainsAction<T>() where T : IAction
     {
@@ -98,10 +97,10 @@ public class ActionBar : MonoBehaviour
             newSlot.name = $"Action Slot {i}";
             actionSlots.Add(newSlot);
 
-            newSlot.actionCombo = new ActionCombo(keyboardLayout[keyboardPositions[i].x, keyboardPositions[i].y], null, newSlot.onValueChanged);
+            newSlot.actionCombo = new ActionCombo(keyboardLayout[keyboardPositions[i].x, keyboardPositions[i].y], null, newSlot.OnValueChanged);
             keyboardLayout[keyboardPositions[i].x, keyboardPositions[i].y] = KeyCode.None;
 
-            newSlot.onValueChanged?.Invoke();
+            newSlot.OnValueChanged?.Invoke();
         }
     }
 

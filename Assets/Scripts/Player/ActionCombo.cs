@@ -3,7 +3,7 @@ using UnityEngine;
 public struct ActionCombo
 {
     public delegate void ActionHandler();
-    private ActionHandler onValueChanged;
+    private ActionHandler OnValueChanged;
 
     private KeyCode _key;
     private IAction _action;
@@ -17,7 +17,7 @@ public struct ActionCombo
         set
         {
             _key = value;
-            onValueChanged?.Invoke();
+            OnValueChanged?.Invoke();
         }
     }
     public IAction Action
@@ -29,13 +29,13 @@ public struct ActionCombo
         set
         {
             _action = value;
-            onValueChanged?.Invoke();
+            OnValueChanged?.Invoke();
         }
     }
     public ActionCombo(KeyCode key, IAction action, ActionHandler onValueChanged)
     {
         _key = key;
         _action = action;
-        this.onValueChanged = onValueChanged;
+        this.OnValueChanged = onValueChanged;
     }
 }

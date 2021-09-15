@@ -3,19 +3,14 @@ using System.Collections.Generic;
 
 public class ObjectPool<T> where T : new()
 {
-    delegate T CreationHandler();
-    CreationHandler OnCreate;
+    private delegate T CreationHandler();
+    private CreationHandler OnCreate;
 
     private Queue<T> _pool = new Queue<T>();
 
-    public ObjectPool() // lambda stuff
-    {
-        OnCreate = () => new T();
-    }
-    public ObjectPool(Func<T> createFunction) // lambda stuff
-    {
-        OnCreate = createFunction.Invoke;
-    }
+    public ObjectPool() => OnCreate = () => new T();
+
+    public ObjectPool(Func<T> createFunction) => OnCreate = createFunction.Invoke;
 
     public T Acquire()
     {
@@ -31,9 +26,7 @@ public class ObjectPool<T> where T : new()
         }
         return poolObject;
     }
-    public void Release(T returnObject) // lambda stuff
-    {
-        _pool.Enqueue(returnObject);
-    }
+    public void Release(T returnObject) => _pool.Enqueue(returnObject);
+
     public int GetPoolSize() => _pool.Count;
 }

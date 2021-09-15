@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraBorder : MonoBehaviour
@@ -20,7 +18,6 @@ public class CameraBorder : MonoBehaviour
         edgePoints[3] = Camera.main.ScreenToWorldPoint(new Vector3(width, height, 0)) - transform.position;
         edgePoints[4] = edgePoints[0];
         
-
         GetComponent<EdgeCollider2D>().points = edgePoints;
     }
 }

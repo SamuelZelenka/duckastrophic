@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic; // unused namespaces
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GoalFlag : MonoBehaviour
 {
+    public UnityEvent OnWin;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == ("Player"))
-        Debug.Log("You wiiiin weee:)::):):)"); //implement actual win code
+        {
+            OnWin.Invoke();
+        }
     }
 }

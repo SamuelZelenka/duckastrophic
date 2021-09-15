@@ -6,10 +6,7 @@ public class SceneMerger : MonoBehaviour
     [Header("Additive Scenes")]
     [SerializeField] private string[] _scenes;
 
-    private void Awake() // lambda stuff
-    {
-        MergeScenes();
-    }
+    private void Awake() => MergeScenes();
 
     private void MergeScenes()
     {

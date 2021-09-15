@@ -6,12 +6,12 @@ public class Jump : IAction
     public void Initiate() { }
     public void TriggerAction() 
     {
-        // make a playerController variable
+        PlayerController player = PlayerComponentService<PlayerController>.instance;
 
-        if (PlayerComponentService<PlayerController>.instance.isGrounded)
+        if (player.isGrounded)
         {
-            PlayerComponentService<Rigidbody2D>.instance.AddForce(PlayerComponentService<Transform>.instance.up * PlayerComponentService<PlayerController>.instance.jumpForce);
-            PlayerComponentService<PlayerController>.instance.isGrounded = false;
+            PlayerComponentService<Rigidbody2D>.instance.AddForce(PlayerComponentService<Transform>.instance.up * player.jumpForce);
+            player.isGrounded = false;
         }
     }
 }

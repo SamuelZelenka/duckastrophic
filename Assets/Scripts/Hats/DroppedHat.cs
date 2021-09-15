@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class DroppedHat : SwapableObject, IInteractable
@@ -13,12 +12,14 @@ public class DroppedHat : SwapableObject, IInteractable
     }
     public override void Interact()
     {
-        Sprite hatFromPlayer = PlayerComponentService<PlayerController>.instance.GetHat();
+        PlayerController player = PlayerComponentService<PlayerController>.instance;
 
+        Sprite hatFromPlayer = player.GetHat();
         _spriterenderer.sprite = hatFromPlayer;
 
-        PlayerComponentService<PlayerController>.instance.SwapHat(_hatSprite);
+        player.SwapHat(_hatSprite);
         _hatSprite = hatFromPlayer;
+        
         if (_hatSprite == null)
         {
             Destroy(gameObject);

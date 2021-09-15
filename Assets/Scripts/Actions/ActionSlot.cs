@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class ActionSlot : MonoBehaviour
 {
-    public ActionCombo.ActionHandler onValueChanged; //Should be UpperCase O
-    
+    public ActionCombo.ActionHandler OnValueChanged;
     public ActionCombo actionCombo;
     public Image highlight;
+    
     [SerializeField] private TMP_Text keyText;
     [SerializeField] private Image _playerActionIcon;
 
     private void Awake()
     {
         highlight.enabled = false;
-        actionCombo = new ActionCombo(KeyCode.None, null, onValueChanged);
-        onValueChanged += UpdateVisuals;
+        actionCombo = new ActionCombo(KeyCode.None, null, OnValueChanged);
+        OnValueChanged += UpdateVisuals;
     }
     public void CheckInput()
     {

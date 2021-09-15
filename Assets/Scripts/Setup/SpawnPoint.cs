@@ -2,8 +2,5 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    void Start() // lambda stuff
-    {
-        PlayerComponentService<Transform>.instance.position = transform.position;
-    }
+    void Start() => PlayerComponentService<Transform>.instance.position = transform.position;
 }

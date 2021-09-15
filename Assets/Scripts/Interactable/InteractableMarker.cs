@@ -1,22 +1,18 @@
-using System.Collections; //unused namespace
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableMarker : MonoBehaviour
 {
-    //sorting variables stuff
-
-    [Range(0, 25)] public int markerCount = 3;
-
     public float radius = 1;
     public IInteractable interactable;
 
-    [SerializeField] private Vector2 posOffset;
+    [Range(0, 25)] public int markerCount = 3;
 
-    private MarkerPool _pool;
-
-    private List<MarkerVisual> _markers = new List<MarkerVisual>();
     private float angleOffset = 0;
+    private MarkerPool _pool;
+    private List<MarkerVisual> _markers = new List<MarkerVisual>();
+
+    [SerializeField] private Vector2 posOffset;
 
     private void Start()
     {
@@ -52,7 +48,9 @@ public class InteractableMarker : MonoBehaviour
 
     public void GetMarkers()
     {
-        if (PlayerComponentService<PlayerController>.instance.interactionController.ClosestInteractable == interactable && !interactable.IsHighlighted)
+        PlayerController player = PlayerComponentService<PlayerController>.instance;
+
+        if (player.interactionController.ClosestInteractable == interactable && !interactable.IsHighlighted)
         {
             for (int i = 0; i < markerCount; i++)
             {
