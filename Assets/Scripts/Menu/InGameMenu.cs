@@ -25,21 +25,8 @@ public class InGameMenu : MonoBehaviour
             }
         }
     }
-    public void EnableMenu() //lambda stuff
-    {
-        OnMenuEnabled.Invoke();
-    }
+    public void EnableMenu() => OnMenuEnabled.Invoke();
 
-    public void DisableMenu() //lambda stuff
-    {
-        OnMenuDisabled.Invoke();
-    }
-    public void RestartLevel() //lambda stuff
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    public void QuitGame() //lambda stuff
-    {
-        Application.Quit();
-    }
+
+    public void DisableMenu() => OnMenuDisabled.Invoke();
 }
