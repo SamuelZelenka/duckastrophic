@@ -33,13 +33,8 @@ public class PickUp : IAction
         }
         else
         {
-            _playerController.heldObject?.Interact();
+            DropObject();
         }
-    }
-
-    public Sprite GetSprite() //Make one line using lambda operator
-    {
-        return SpriteReferences.Instance.PickUpObject;
     }
 
     public void AssignHeldObject(PickUpObject pickUpObject) //Make one line using lambda operator
@@ -62,9 +57,9 @@ public class PickUp : IAction
             pickUpObject.transform.rotation = Quaternion.identity;
 
             pickUpObject.GetComponent<Collider2D>().enabled = false;
-            _rigidBody.freezeRotation = true;
-            _rigidBody.bodyType = RigidbodyType2D.Kinematic;
-            _rigidBody.velocity = new Vector2(0, 0);
+            pickUpObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+            pickUpObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            pickUpObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
     }
 

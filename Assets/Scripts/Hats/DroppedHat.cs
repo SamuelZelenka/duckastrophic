@@ -14,8 +14,10 @@ public class DroppedHat : SwapableObject, IInteractable
     public override void Interact()
     {
         Sprite hatFromPlayer = PlayerComponentService<PlayerController>.instance.GetHat();
+
         _spriterenderer.sprite = hatFromPlayer;
-        PlayerComponentService<PlayerController>.instance.SwapHat(ref _hatSprite);
+
+        PlayerComponentService<PlayerController>.instance.SwapHat(_hatSprite);
         _hatSprite = hatFromPlayer;
         if (_hatSprite == null)
         {

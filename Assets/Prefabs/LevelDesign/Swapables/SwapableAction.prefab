@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 4636907673577341941}
   - component: {fileID: 6169816725700842987}
   - component: {fileID: 2174273500664382639}
+  - component: {fileID: 6079834690436231519}
   m_Layer: 9
   m_Name: SwapableAction
   m_TagString: Untagged
@@ -247,6 +248,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6079834690436231519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6169816725700842983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpriteLibraryAsset: {fileID: 11400000, guid: 3e8e701c43a4ec640a1818450aac3ef0, type: 2}
 --- !u!1 &8672375479928478619
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,9 +354,9 @@ Animation:
   m_GameObject: {fileID: 8672375479928478619}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: c180a891e0e392e44bff2c8a7eb20465, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: c180a891e0e392e44bff2c8a7eb20465, type: 2}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -357,7 +371,7 @@ Animator:
   m_GameObject: {fileID: 8672375479928478619}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 280c440b7889b1f4b814636b4f6a9d8b, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

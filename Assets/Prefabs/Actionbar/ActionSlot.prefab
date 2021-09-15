@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4362873005358082310}
   - component: {fileID: 4362873005358082311}
   - component: {fileID: 4362873005358082308}
+  - component: {fileID: 7316310964943517383}
   m_Layer: 5
   m_Name: ActionSlot
   m_TagString: Untagged
@@ -169,6 +170,19 @@ MonoBehaviour:
   highlight: {fileID: 4362873005358082311}
   keyText: {fileID: 4308114336641749753}
   _playerActionIcon: {fileID: 3651737914309918962}
+--- !u!114 &7316310964943517383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362873005358082426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpriteLibraryAsset: {fileID: 11400000, guid: 3e8e701c43a4ec640a1818450aac3ef0, type: 2}
 --- !u!1 &5828663269274477060
 GameObject:
   m_ObjectHideFlags: 0

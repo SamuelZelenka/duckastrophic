@@ -56,24 +56,29 @@ public class PlayerController : MonoBehaviour
         new PlayerComponentService<PlayerController>(this);
         new PlayerComponentService<SpriteRenderer>(this);
         new PlayerComponentService<Transform>(this);
+        new PlayerComponentService<Animator>(this);
     }
 
     private void Update()
     {
-        PlayerComponentService<PlayerController>.instance.actionBar.CheckKeys();
+        actionBar.CheckKeys();
+        if (GetComponent<Rigidbody2D>().velocity.x < 0.1f && GetComponent<Rigidbody2D>().velocity.x > -0.1f)
+        {
+            GetComponent<Animator>().SetBool("Running", false);
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             interactionController.ClosestInteractable?.Interact();
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            PlayerComponentService<PlayerController>.instance.actionBar.SwitchAction();
+            actionBar.SwitchAction();
         }
     }
 
     public Sprite GetHat() => _hatHolder.sprite;
 
-    public void SwapHat(ref Sprite hat) //Lambda stuff
+    public void SwapHat(Sprite hat) //Lambda stuff
     {
         _hatHolder.sprite = hat;
     }

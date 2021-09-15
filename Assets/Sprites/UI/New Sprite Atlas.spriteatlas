@@ -20,7 +20,19 @@ SpriteAtlas:
       readable: 0
       crunchedCompression: 0
       sRGB: 1
-    platformSettings: []
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -31,38 +43,33 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-    totalSpriteSurfaceArea: 3888
+    - {fileID: 2800000, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+    - {fileID: 2800000, guid: fec1c9d685194b94d99cce52b6594527, type: 3}
+    totalSpriteSurfaceArea: 2025
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 5018767091035188956, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: -218759243145193963, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: 3413810037462026878, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: -8040614261421040475, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: 4959580268498199646, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: 5694092191425053634, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: -874866928925046816, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: 7851469215577106442, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: -1947119597284832994, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: -3699941760210888529, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: -188987199052099505, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
-  - {fileID: 9104761807855522788, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
+  - {fileID: 2400381904355291656, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+  - {fileID: -4046424951591639897, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+  - {fileID: -661952994379052920, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+  - {fileID: 6002779514526978700, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+  - {fileID: 204426812667004377, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+  - {fileID: -1168924021501791530, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+  - {fileID: 5643974210261759171, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+  - {fileID: -3023940150341741020, guid: cbde09e26ab022d4cb3c076f74c5e482, type: 3}
+  - {fileID: 21300000, guid: fec1c9d685194b94d99cce52b6594527, type: 3}
   m_PackedSpriteNamesToIndex:
-  - ButtonHighlightBorder_6
-  - ButtonHighlightBorder_7
-  - ButtonHighlightBorder_4
-  - ButtonHighlightBorder_5
-  - ButtonHighlightBorder_2
-  - ButtonHighlightBorder_3
-  - ButtonHighlightBorder_0
-  - ButtonHighlightBorder_1
-  - ButtonHighlightBorder_8
-  - ButtonHighlightBorder_9
-  - ButtonHighlightBorder_11
-  - ButtonHighlightBorder_10
+  - DuckRunning_0
+  - DuckRunning_1
+  - DuckRunning_2
+  - DuckRunning_3
+  - DuckRunning_4
+  - DuckRunning_5
+  - DuckRunning_6
+  - DuckRunning_7
+  - Duck
   m_RenderDataMap: {}
   m_Tag: New Sprite Atlas
   m_IsVariant: 0

@@ -15,8 +15,4 @@ public class Jump : IAction
             PlayerComponentService<PlayerController>.instance.isGrounded = false;
         }
     }
-    public Sprite GetSprite() //Make one line using lambda operator
-    {
-        return SpriteReferences.Instance.Jump;
-    }
 }

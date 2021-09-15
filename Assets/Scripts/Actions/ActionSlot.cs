@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.U2D.Animation;
 using UnityEngine.UI;
 
 public class ActionSlot : MonoBehaviour
@@ -45,7 +46,7 @@ public class ActionSlot : MonoBehaviour
         if (actionCombo.Action != null)
         {
             _playerActionIcon.enabled = true;
-            _playerActionIcon.sprite = actionCombo.Action.GetSprite();
+            _playerActionIcon.sprite = GetComponent<SpriteLibrary>().GetSprite("Actions", actionCombo.Action.ToString());
         }
         else
         {

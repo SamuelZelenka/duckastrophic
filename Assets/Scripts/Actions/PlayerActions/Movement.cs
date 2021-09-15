@@ -3,7 +3,6 @@ using UnityEngine;
 public abstract class Movement : IAction
 {
     public abstract bool HoldKeyDown { get; }
-    public abstract Sprite GetSprite();
     public abstract void TriggerAction();
 
     public void Initiate() { }
@@ -14,6 +13,7 @@ public abstract class Movement : IAction
         {
             movementSpeed *= 0.2f;
         }
+        PlayerComponentService<Animator>.instance.SetBool("Running", true);
         PlayerComponentService<Rigidbody2D>.instance.velocity = PlayerComponentService<Rigidbody2D>.instance.velocity + direction * movementSpeed * Time.deltaTime; //add rigidbody variable for readability
     }
 }
@@ -29,10 +29,6 @@ public class MoveLeft : Movement
             PlayerComponentService<PlayerController>.instance.IsFacingRight = false;
         }
     }
-    public override Sprite GetSprite() //Make one line using lambda operator
-    {
-        return SpriteReferences.Instance.MoveLeft;
-    }
 }
 
 public class MoveRight : Movement
@@ -47,9 +43,5 @@ public class MoveRight : Movement
             MoveDirection(PlayerComponentService<Transform>.instance.right); //Change to Vector3.right for readability
             PlayerComponentService<PlayerController>.instance.IsFacingRight = true;
         }
-    }
-    public override Sprite GetSprite() //Make one line using lambda operator
-    {
-        return SpriteReferences.Instance.MoveRight;
     }
 }

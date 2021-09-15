@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Experimental.U2D.Animation;
 
 public class SwapableAction : SwapableObject
 {
@@ -16,7 +17,7 @@ public class SwapableAction : SwapableObject
     [SerializeField] private SpriteRenderer _actionIconRenderer;
     protected void Start() // lambda operator stuffs
     {
-        _actionIconRenderer.sprite = actions[actionIndex].GetSprite();
+        _actionIconRenderer.sprite = GetComponent<SpriteLibrary>().GetSprite("Actions", actions[actionIndex].ToString()); //actions[actionIndex].GetSprite();
     }
     public override void Interact() //Make playercontroller varaible for readability
     {
@@ -29,7 +30,7 @@ public class SwapableAction : SwapableObject
         else
         {
             actions[actionIndex] = newAction;
-            _actionIconRenderer.sprite = actions[actionIndex].GetSprite();
+            _actionIconRenderer.sprite = GetComponent<SpriteLibrary>().GetSprite("Actions", actions[actionIndex].ToString());
         }
     }
 }

@@ -6,8 +6,6 @@ public abstract class Dash : IAction
 
     public bool HoldKeyDown { get { return false; } }
 
-    public abstract Sprite GetSprite();
-
     public virtual void Initiate() { }
 
     public abstract void TriggerAction();
@@ -28,11 +26,9 @@ public abstract class Dash : IAction
 public class DashRight : Dash
 {
     public override void TriggerAction() => DashDirection(Direction.Right);
-    public override Sprite GetSprite() => SpriteReferences.Instance.DashRight;
 }
 
 public class DashLeft : Dash
 {
     public override void TriggerAction() => DashDirection(Direction.Left);
-    public override Sprite GetSprite() => SpriteReferences.Instance.DashLeft;
 }
