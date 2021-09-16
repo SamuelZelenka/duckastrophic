@@ -28,7 +28,7 @@ public class CameraFollow : MonoBehaviour
     private void Update()
     {
         playerPosition = GameSession.player.transform.position;
-        offset = new Vector3(0, 3, -10);
+        offset = new Vector3(0, 1, -10);
         startPosition = transform.position;
         endPosition = playerPosition + offset;
     }
