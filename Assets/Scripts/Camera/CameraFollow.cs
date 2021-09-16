@@ -12,6 +12,10 @@ public class CameraFollow : MonoBehaviour
     private bool shouldLerp = false;
 
     public float lerpTime;
+    public float xMin = -1.0f, xMax = 1.0f;
+    public float yMin = 5.0f, yMax = 6.0f;
+    public float nextPositionX;
+    public float nextPositionY;
 
     public Vector3 endPosition;
     public Vector3 nextPosition;
@@ -27,15 +31,16 @@ public class CameraFollow : MonoBehaviour
         if (shouldLerp)
         {
             nextPosition = Lerp(startPosition, endPosition, lerpTime);
+            nextPositionX = Mathf.Clamp(nextPosition.x, xMin, xMax);
+            nextPositionY = Mathf.Clamp(nextPosition.y, yMin, yMax);
 
-
-            transform.position = nextPosition;
+            transform.position = new Vector3(nextPositionX, nextPositionY, transform.position.z);
         }
     }
 
     private void Update()
     {
-        playerPosition = PlayerComponentService<Transform>.instance.position;
+        playerPosition = GameSession.player.transform.position;
         offset = new Vector3(0, 3, -10);
         startPosition = transform.position;
         endPosition = playerPosition + offset;
