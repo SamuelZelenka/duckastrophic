@@ -7,7 +7,6 @@ public class PickUpObject : MonoBehaviour, IInteractable
     public Transform Transform  { get { return transform; } }
     public InteractableMarker Highlight { get; set; }
 
-
     private void Awake() => gameObject.layer = LayerMask.NameToLayer("Interactable");
 
     public void EnableHighlight()
@@ -18,18 +17,12 @@ public class PickUpObject : MonoBehaviour, IInteractable
     }
     public void DisableHighlight()
     {
-        PlayerController player = PlayerComponentService<PlayerController>.instance;
-
-        player.interactionController.OnClosestInteractableChange -= DisableHighlight;
+        GameSession.player.interactionController.OnClosestInteractableChange -= DisableHighlight;
         Highlight.ReleaseMarkers();
         IsHighlighted = false;
     }
 
-    public void Interact() { }
+    public void Interact(PlayerController player) { }
 
-    public bool IsInteractable()
-    {
-        PlayerController player = PlayerComponentService<PlayerController>.instance;
-        return player.actionBar.ContainsAction<PickUp>();
-    }
+    public bool IsInteractable() => GameSession.player.actionBar.ContainsAction<PickUp>();
 }

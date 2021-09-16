@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class PickUp : IAction
 {
-    //Sort variables public , [serializedfield], private
     public AudioClip duckQuack; // Make an Audio library to hold audioclips? Variable name can be improved on what kind of variable it is. 
 
-    private PlayerController _playerController;
-    private InteractionController _interactionController;
+    private PlayerController _player;
     
     public bool HoldKeyDown { get { return false; } }
 
-    public void Initiate()
+    public void Initiate(PlayerController player)
     {
-        _playerController = PlayerComponentService<PlayerController>.instance;
-        _interactionController = _playerController.interactionController;
+        _player = player;
     }
 
     public void TriggerAction()
     {
         AudioManager.Instance.Play(duckQuack);
-        if (_interactionController.ClosestInteractable != null &&
-            _interactionController.ClosestInteractable.GetType() == typeof(PickUpObject))
+        if (_player.interactionController.ClosestInteractable != null &&
+            _player.interactionController.ClosestInteractable.GetType() == typeof(PickUpObject) &&
+            _player.heldObject != (PickUpObject)_player.interactionController.ClosestInteractable)
         {
-            PickUpObject pickUpObject = (PickUpObject)_interactionController.ClosestInteractable;
+            PickUpObject pickUpObject = (PickUpObject)_player.interactionController.ClosestInteractable;
             PickUpObject(pickUpObject);
-            _interactionController.ClosestInteractable.Interact();
+            _player.interactionController.ClosestInteractable.Interact(GameSession.player);
         }
         else
         {
@@ -34,23 +32,23 @@ public class PickUp : IAction
         }
     }
 
-    public void AssignHeldObject(PickUpObject pickUpObject) => _playerController.heldObject = pickUpObject;
+    public void AssignHeldObject(PickUpObject pickUpObject) => _player.heldObject = pickUpObject;
 
 
     private void PickUpObject(PickUpObject pickUpObject)
     {
-        if (_playerController.heldObject != null)
+        if (_player.heldObject != null)
         {
             DropObject();
         }
-        if (_playerController.actionBar.ContainsAction<PickUp>())
+        if (_player.actionBar.ContainsAction<PickUp>())
         {
             Rigidbody2D rigidbody = pickUpObject.GetComponent<Rigidbody2D>();
 
-            _playerController.heldObject = pickUpObject;
-            _playerController.actionBar.GetAction();
-            pickUpObject.transform.SetParent(_playerController.transform);
-            pickUpObject.transform.localPosition = new Vector2(_playerController.pickedUpOffsetX, _playerController.pickedUpOffsetY);
+            _player.heldObject = pickUpObject;
+            _player.actionBar.GetAction();
+            pickUpObject.transform.SetParent(_player.transform);
+            pickUpObject.transform.localPosition = new Vector2(_player.pickedUpOffsetX, _player.pickedUpOffsetY);
             pickUpObject.transform.rotation = Quaternion.identity;
 
             pickUpObject.GetComponent<Collider2D>().enabled = false;
@@ -59,16 +57,18 @@ public class PickUp : IAction
             rigidbody.velocity = new Vector2(0, 0);
         }
     }
-
     private void DropObject()
     {
-        Collider2D heldObjectCollider = _playerController.heldObject.GetComponent<Collider2D>();
-        _playerController.heldObject.transform.SetParent(null);
-        heldObjectCollider.enabled = true;
-        heldObjectCollider.attachedRigidbody.freezeRotation = false;
-        heldObjectCollider.attachedRigidbody.bodyType = RigidbodyType2D.Dynamic;
-        heldObjectCollider.attachedRigidbody.AddForce(Vector2.right * (float)_playerController.FaceDirection * 200);
+        Collider2D heldObjectCollider = GameSession.player.heldObject?.GetComponent<Collider2D>();
+        if (heldObjectCollider != null)
+        {
+            heldObjectCollider.transform.SetParent(null);
+            heldObjectCollider.enabled = true;
+            heldObjectCollider.attachedRigidbody.freezeRotation = false;
+            heldObjectCollider.attachedRigidbody.bodyType = RigidbodyType2D.Dynamic;
+            heldObjectCollider.attachedRigidbody.AddForce(Vector2.right * (float)_player.FaceDirection * 200);
 
-        _playerController.heldObject = null;
+            GameSession.player.heldObject = null;
+        }
     }
 }

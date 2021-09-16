@@ -74,8 +74,8 @@ public class InteractionController : MonoBehaviour
         ClosestInteractable = null;
     }
 
-    public void InteractWithClosestObject()
+    public void InteractWithClosestObject(PlayerController player)
     {
-        ClosestInteractable?.Interact();
+        ClosestInteractable?.Interact(player);
     }
 }

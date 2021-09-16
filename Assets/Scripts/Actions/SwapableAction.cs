@@ -17,13 +17,17 @@ public class SwapableAction : SwapableObject
 
     [SerializeField] private SpriteRenderer _actionIconRenderer;
 
-    protected void Start() =>_actionIconRenderer.sprite = GetComponent<SpriteLibrary>().GetSprite("Actions", actions[actionIndex].ToString());
-
-    public override void Interact()
+    protected void Start()
     {
-        PlayerController player = PlayerComponentService<PlayerController>.instance;
+        _actionIconRenderer.sprite = GetComponent<SpriteLibrary>().GetSprite("Actions", actions[actionIndex].ToString());
+    }
+
+    public override void Interact(PlayerController player)
+    {
+        base.Interact(player);
 
         IAction newAction = player.actionBar.GetAction();
+        actions[actionIndex].Initiate(player);
         player.actionBar.SetAction(actions[actionIndex]);
 
         if (newAction == null)

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerComponentService<T> where T : Component
+public class PlayerComponentervice<T> where T : Component
 {
     public static T instance;
 
-    public PlayerComponentService(PlayerController player) => instance = player.GetComponent<T>();
+    public PlayerComponentervice(PlayerController player) => instance = player.GetComponent<T>();
 }

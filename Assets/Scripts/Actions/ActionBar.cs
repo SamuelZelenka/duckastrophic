@@ -27,16 +27,16 @@ public class ActionBar : MonoBehaviour
                 _actionSlotIndex = actionSlots.Count - 1;
             }
 
-
             _actionSlotIndex = (value % _actionSlotCount + _actionSlotCount) % _actionSlotCount;
         }
     }
 
     private void Awake()
     {
-        PlayerComponentService<PlayerController>.instance.actionBar = this;
-        GenerateActionSlots(ref PlayerComponentService<PlayerController>.instance.keyboardLayout);
+        GameSession.player.actionBar = this;
+        GenerateActionSlots(ref GameSession.player.keyboardLayout);
         actionSlots[0].actionCombo.Action = new MoveRight();
+        actionSlots[0].actionCombo.Action.Initiate(GameSession.player);
         actionSlots[0].highlight.enabled = true;
     }
 
@@ -45,7 +45,7 @@ public class ActionBar : MonoBehaviour
     public void SetKey(KeyCode key) => actionSlots[ActionSlotIndex].actionCombo.Key = key;
     public void SetAction(IAction action)
     {
-        action.Initiate();
+        action.Initiate(GameSession.player);
         actionSlots[ActionSlotIndex].actionCombo.Action = action;
     }
 

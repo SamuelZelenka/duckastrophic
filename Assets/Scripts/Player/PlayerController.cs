@@ -1,5 +1,7 @@
 using UnityEngine;
 
+public enum Direction { Left = -1, Right = 1 }
+
 public class PlayerController : MonoBehaviour
 {
     public float acceleration;
@@ -17,8 +19,10 @@ public class PlayerController : MonoBehaviour
     public PickUpObject heldObject = null;
     public InteractionController interactionController;
     public ActionBar actionBar;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+    public Rigidbody2D rigidbody;
 
-    private Rigidbody2D _rigidbody;
     [SerializeField] private SpriteRenderer _hatHolder;
 
     private Direction _faceDirection;
@@ -54,12 +58,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         lastDashTime = dashCooldown;
-        _rigidbody = GetComponent<Rigidbody2D>();
-        new PlayerComponentService<Rigidbody2D>(this);
-        new PlayerComponentService<PlayerController>(this);
-        new PlayerComponentService<SpriteRenderer>(this);
-        new PlayerComponentService<Transform>(this);
-        new PlayerComponentService<Animator>(this);
+        rigidbody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            interactionController.ClosestInteractable?.Interact();
+            interactionController.ClosestInteractable?.Interact(this);
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -78,11 +79,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_rigidbody.velocity.x < 0.1f &&_rigidbody.velocity.x > -0.1f)
+        if (rigidbody.velocity.x < 0.1f && rigidbody.velocity.x > -0.1f)
         {
             GetComponent<Animator>().SetBool("Running", false);
         }
-        if (_rigidbody.velocity.y <= 0.1f && _rigidbody.velocity.y >= -0.1f)
+        if (rigidbody.velocity.y <= 0.1f && rigidbody.velocity.y >= -0.1f)
         {
             isGrounded = true;
         }

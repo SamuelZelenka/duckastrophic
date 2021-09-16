@@ -34,9 +34,9 @@ public class ActionSlot : MonoBehaviour
 
         void TriggerAction(bool input)
         {
-            if (input && actionCombo.Action != null)
+            if (input)
             {
-                actionCombo.Action.TriggerAction();
+                actionCombo.Action?.TriggerAction();
             }
         }
     }
