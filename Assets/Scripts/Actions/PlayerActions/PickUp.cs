@@ -5,14 +5,12 @@ using UnityEngine;
 public class PickUp : IAction
 {
     //Sort variables public , [serializedfield], private
-    private Rigidbody2D _rigidbody; // Is the Action responsible for the Rigidbody?
-
     public AudioClip duckQuack; // Make an Audio library to hold audioclips? Variable name can be improved on what kind of variable it is. 
-
-    public bool HoldKeyDown { get { return false; } }
 
     private PlayerController _playerController;
     private InteractionController _interactionController;
+    
+    public bool HoldKeyDown { get { return false; } }
 
     public void Initiate()
     {
@@ -29,7 +27,6 @@ public class PickUp : IAction
             PickUpObject pickUpObject = (PickUpObject)_interactionController.ClosestInteractable;
             PickUpObject(pickUpObject);
             _interactionController.ClosestInteractable.Interact();
-            _rigidbody = pickUpObject.GetComponent<Rigidbody2D>();
         }
         else
         {
@@ -37,10 +34,8 @@ public class PickUp : IAction
         }
     }
 
-    public void AssignHeldObject(PickUpObject pickUpObject) //Make one line using lambda operator
-    {
-        _playerController.heldObject = pickUpObject;
-    }
+    public void AssignHeldObject(PickUpObject pickUpObject) => _playerController.heldObject = pickUpObject;
+
 
     private void PickUpObject(PickUpObject pickUpObject)
     {
@@ -48,18 +43,20 @@ public class PickUp : IAction
         {
             DropObject();
         }
-        if (PlayerComponentService<PlayerController>.instance.actionBar.ContainsAction<PickUp>()) //Create Actionbar as a variable as it is used twice. For readability
+        if (_playerController.actionBar.ContainsAction<PickUp>())
         {
+            Rigidbody2D rigidbody = pickUpObject.GetComponent<Rigidbody2D>();
+
             _playerController.heldObject = pickUpObject;
-            PlayerComponentService<PlayerController>.instance.actionBar.GetAction();
+            _playerController.actionBar.GetAction();
             pickUpObject.transform.SetParent(_playerController.transform);
             pickUpObject.transform.localPosition = new Vector2(_playerController.pickedUpOffsetX, _playerController.pickedUpOffsetY);
             pickUpObject.transform.rotation = Quaternion.identity;
 
             pickUpObject.GetComponent<Collider2D>().enabled = false;
-            pickUpObject.GetComponent<Rigidbody2D>().freezeRotation = true;
-            pickUpObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            pickUpObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            rigidbody.freezeRotation = true;
+            rigidbody.bodyType = RigidbodyType2D.Kinematic;
+            rigidbody.velocity = new Vector2(0, 0);
         }
     }
 

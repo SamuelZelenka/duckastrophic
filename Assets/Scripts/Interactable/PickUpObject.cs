@@ -3,16 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(InteractableMarker))]
 public class PickUpObject : MonoBehaviour, IInteractable
 {
-    //Sort variables
-    public InteractableMarker Highlight { get; set; }
     public bool IsHighlighted { get; private set; }
+    public Transform Transform  { get { return transform; } }
+    public InteractableMarker Highlight { get; set; }
 
-    public Transform Transform => transform;
 
-    private void Awake() //lambda stuff
-    {
-        gameObject.layer = LayerMask.NameToLayer("Interactable");
-    }
+    private void Awake() => gameObject.layer = LayerMask.NameToLayer("Interactable");
 
     public void EnableHighlight()
     {
@@ -22,12 +18,18 @@ public class PickUpObject : MonoBehaviour, IInteractable
     }
     public void DisableHighlight()
     {
-        PlayerComponentService<PlayerController>.instance.interactionController.OnClosestInteractableChange -= DisableHighlight;
+        PlayerController player = PlayerComponentService<PlayerController>.instance;
+
+        player.interactionController.OnClosestInteractableChange -= DisableHighlight;
         Highlight.ReleaseMarkers();
         IsHighlighted = false;
     }
 
     public void Interact() { }
 
-    public bool IsInteractable() => PlayerComponentService<PlayerController>.instance.actionBar.ContainsAction<PickUp>();
+    public bool IsInteractable()
+    {
+        PlayerController player = PlayerComponentService<PlayerController>.instance;
+        return player.actionBar.ContainsAction<PickUp>();
+    }
 }

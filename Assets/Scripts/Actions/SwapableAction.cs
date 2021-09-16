@@ -3,8 +3,6 @@ using UnityEngine.Experimental.U2D.Animation;
 
 public class SwapableAction : SwapableObject
 {
-    // sort variables logically
-    [HideInInspector] public  int actionIndex;
     public readonly IAction[] actions = new IAction[]
     {
         new MoveLeft(),
@@ -14,15 +12,20 @@ public class SwapableAction : SwapableObject
         new DashRight(),
         new PickUp()
     };
+
+    [HideInInspector] public  int actionIndex;
+
     [SerializeField] private SpriteRenderer _actionIconRenderer;
-    protected void Start() // lambda operator stuffs
+
+    protected void Start() =>_actionIconRenderer.sprite = GetComponent<SpriteLibrary>().GetSprite("Actions", actions[actionIndex].ToString());
+
+    public override void Interact()
     {
-        _actionIconRenderer.sprite = GetComponent<SpriteLibrary>().GetSprite("Actions", actions[actionIndex].ToString()); //actions[actionIndex].GetSprite();
-    }
-    public override void Interact() //Make playercontroller varaible for readability
-    {
-        IAction newAction = PlayerComponentService<PlayerController>.instance.actionBar.GetAction();
-        PlayerComponentService<PlayerController>.instance.actionBar.SetAction(actions[actionIndex]);
+        PlayerController player = PlayerComponentService<PlayerController>.instance;
+
+        IAction newAction = player.actionBar.GetAction();
+        player.actionBar.SetAction(actions[actionIndex]);
+
         if (newAction == null)
         {
             Destroy(gameObject);

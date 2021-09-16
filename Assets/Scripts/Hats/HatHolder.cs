@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic; //unused namespaces
 using UnityEngine;
 
 public class HatHolder : MonoBehaviour
 {
-    SpriteRenderer _hatHolder; // name inconsistency
+    private SpriteRenderer _hatHolder;
 
-    public void SwapHat(Sprite hat) //lambda stuff
-    {
-        _hatHolder.sprite = hat;
-    }
+    public void SwapHat(Sprite hat) => _hatHolder.sprite = hat;
 }
