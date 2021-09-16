@@ -36,15 +36,7 @@ public class ActionBar : MonoBehaviour
     {
         PlayerComponentService<PlayerController>.instance.actionBar = this;
         GenerateActionSlots(ref PlayerComponentService<PlayerController>.instance.keyboardLayout);
-        if (_actionSlotCount == 1)
-        {
-            actionSlots[0].actionCombo.Action = new MoveRight();
-        }
-        if (_actionSlotCount > 1)
-        {
-            actionSlots[0].actionCombo.Action = new MoveLeft();
-            actionSlots[1].actionCombo.Action = new MoveRight();
-        }
+        actionSlots[0].actionCombo.Action = new MoveRight();
         actionSlots[0].highlight.enabled = true;
     }
 
