@@ -34,7 +34,7 @@ public class ActionBar : MonoBehaviour
     private void Awake()
     {
         GameSession.player.actionBar = this;
-        GenerateActionSlots(ref GameSession.player.keyboardLayout);
+        GenerateActionSlots(ref PlayerController.keyboardLayout);
         actionSlots[0].actionCombo.Action = new MoveRight();
         actionSlots[0].actionCombo.Action.Initiate(GameSession.player);
         actionSlots[0].highlight.enabled = true;

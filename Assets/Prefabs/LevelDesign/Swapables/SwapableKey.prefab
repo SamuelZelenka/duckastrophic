@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -825293055
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -874866928925046816, guid: dbcaaec79963194478a4867cdc76385b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,9 +93,9 @@ Animation:
   m_GameObject: {fileID: 709506308702973694}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: c180a891e0e392e44bff2c8a7eb20465, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: c180a891e0e392e44bff2c8a7eb20465, type: 2}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -110,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 709506308702973694}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 280c440b7889b1f4b814636b4f6a9d8b, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -363,8 +363,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -825293055
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 54bcfa0603e95b54f8dad99c8ca971b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -389,7 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7696f26041358a42bc612a2d1b631c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _JumpOnAwake: 0
   _key: 119
   _keyText: {fileID: 7785355711436359483}
 --- !u!61 &2602319898927161486
@@ -451,8 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97aeeeddbce540744812a5549375eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerCount: 6
   radius: 1
+  markerCount: 6
   posOffset: {x: 0, y: 0}
 --- !u!1 &5555417245269951948
 GameObject:
@@ -511,7 +510,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: -825293055
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &7285119370820542592

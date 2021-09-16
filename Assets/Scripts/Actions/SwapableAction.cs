@@ -24,8 +24,6 @@ public class SwapableAction : SwapableObject
 
     public override void Interact(PlayerController player)
     {
-        base.Interact(player);
-
         IAction newAction = player.actionBar.GetAction();
         actions[actionIndex].Initiate(player);
         player.actionBar.SetAction(actions[actionIndex]);

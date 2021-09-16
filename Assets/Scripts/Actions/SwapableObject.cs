@@ -7,11 +7,9 @@ public abstract class SwapableObject : MonoBehaviour, IInteractable
     public bool IsHighlighted { get; private set; }
     public InteractableMarker Highlight { get; set; }
 
-    protected PlayerController player;
-
     protected virtual void Awake() => Highlight = GetComponent<InteractableMarker>();
 
-    public virtual void Interact(PlayerController player) => this.player = player;
+    public abstract void Interact(PlayerController player);
 
     public void EnableHighlight()
     {

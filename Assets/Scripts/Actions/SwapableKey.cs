@@ -12,20 +12,20 @@ public class SwapableKey : SwapableObject
         do
         {
             int randomX, randomY;
-            randomX = Random.Range(0, player.keyboardLayout.GetLength(0));
-            randomY = Random.Range(0, player.keyboardLayout.GetLength(1));
+            randomX = Random.Range(0, PlayerController.keyboardLayout.GetLength(0));
+            randomY = Random.Range(0, PlayerController.keyboardLayout.GetLength(1));
 
-            randomKey = player.keyboardLayout[randomX, randomY];
-            for (int i = 0; i < player.actionBar.actionSlots.Count; i++)
+            randomKey = PlayerController.keyboardLayout[randomX, randomY];
+            for (int i = 0; i < GameSession.player.actionBar.actionSlots.Count; i++)
             {
-                if (player.actionBar.actionSlots[i].actionCombo.Key == randomKey)
+                if (GameSession.player.actionBar.actionSlots[i].actionCombo.Key == randomKey)
                 {
                     randomKey = KeyCode.None;
                 }
             }
             if (randomKey != KeyCode.None)
             {
-                player.keyboardLayout[randomX, randomY] = KeyCode.None;
+                PlayerController.keyboardLayout[randomX, randomY] = KeyCode.None;
                 break;
             }
 
@@ -37,7 +37,6 @@ public class SwapableKey : SwapableObject
     }
     public override void Interact(PlayerController player)
     {
-        base.Interact(player);
         KeyCode newKey = player.actionBar.GetKey();
         player.actionBar.SetKey(_key);
         

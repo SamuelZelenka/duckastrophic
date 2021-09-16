@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private Direction _faceDirection;
 
-    private readonly KeyCode[,] _keyboardLayoutTemplate = new KeyCode[10, 3]
+    private static readonly KeyCode[,] _keyboardLayoutTemplate = new KeyCode[10, 3]
     { 
         //Keyboard layout
         { KeyCode.Q, KeyCode.A, KeyCode.Z },
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         { KeyCode.P, KeyCode.None, KeyCode.None }
     };
 
-    public KeyCode[,] keyboardLayout;
+    public static KeyCode[,] keyboardLayout;
 
     public Direction FaceDirection
     {
