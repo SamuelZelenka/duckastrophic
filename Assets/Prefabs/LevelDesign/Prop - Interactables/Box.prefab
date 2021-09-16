@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97aeeeddbce540744812a5549375eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerCount: 3
   radius: 2
+  markerCount: 3
   posOffset: {x: 0, y: 0}
 --- !u!61 &9198745699458217218
 BoxCollider2D:
