@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
 
     public float lerpTime;
     public float xMin = -1.0f, xMax = 1.0f;
-    public float yMin = 5.0f, yMax = 6.0f;
+    public float yMin = 3.0f, yMax = 6.0f;
     public float nextPositionX;
     public float nextPositionY;
 
@@ -24,6 +24,13 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         StartLerping();
+    }
+    private void Update()
+    {
+        playerPosition = GameSession.player.transform.position;
+        offset = new Vector3(0, 3, -10);
+        startPosition = transform.position;
+        endPosition = playerPosition + offset;
     }
 
     private void LateUpdate()
@@ -38,13 +45,6 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        playerPosition = GameSession.player.transform.position;
-        offset = new Vector3(0, 3, -10);
-        startPosition = transform.position;
-        endPosition = playerPosition + offset;
-    }
 
     private void StartLerping()
     {
