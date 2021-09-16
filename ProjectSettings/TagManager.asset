@@ -45,9 +45,6 @@ TagManager:
   - name: World
     uniqueID: 2675037423
     locked: 0
-  - name: Props
-    uniqueID: 3469674241
-    locked: 0
   - name: Player
     uniqueID: 4179705855
     locked: 0
