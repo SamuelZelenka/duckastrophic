@@ -8,29 +8,15 @@ public class SwapableKey : SwapableObject
     protected void Start()
     {
         KeyCode randomKey;
-        
         do
         {
             int randomX, randomY;
-            randomX = Random.Range(0, PlayerController.keyboardLayout.GetLength(0));
-            randomY = Random.Range(0, PlayerController.keyboardLayout.GetLength(1));
+            randomX = Random.Range(0, GameSession.player.keyboardLayout.GetLength(0));
+            randomY = Random.Range(0, GameSession.player.keyboardLayout.GetLength(1));
 
-            randomKey = PlayerController.keyboardLayout[randomX, randomY];
-            for (int i = 0; i < GameSession.player.actionBar.actionSlots.Count; i++)
-            {
-                if (GameSession.player.actionBar.actionSlots[i].actionCombo.Key == randomKey)
-                {
-                    randomKey = KeyCode.None;
-                }
-            }
-            if (randomKey != KeyCode.None)
-            {
-                PlayerController.keyboardLayout[randomX, randomY] = KeyCode.None;
-                break;
-            }
-
-
+            randomKey = GameSession.player.keyboardLayout[randomX, randomY];
         } while (randomKey == KeyCode.None);
+
 
         _key = randomKey;
         _keyText.text = _key.ToString();

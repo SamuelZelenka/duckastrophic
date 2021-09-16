@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private Direction _faceDirection;
 
-    private static readonly KeyCode[,] _keyboardLayoutTemplate = new KeyCode[10, 3]
+    private KeyCode[,] _keyboardLayoutTemplate = new KeyCode[10, 3]
     { 
         //Keyboard layout
         { KeyCode.Q, KeyCode.A, KeyCode.Z },
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         { KeyCode.P, KeyCode.None, KeyCode.None }
     };
 
-    public static KeyCode[,] keyboardLayout;
+    public KeyCode[,] keyboardLayout;
 
     public Direction FaceDirection
     {
@@ -59,11 +59,11 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        keyboardLayout = _keyboardLayoutTemplate;
         lastDashTime = dashCooldown;
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        keyboardLayout = _keyboardLayoutTemplate;
         actionBar = FindObjectOfType<ActionBar>();
     }
 
