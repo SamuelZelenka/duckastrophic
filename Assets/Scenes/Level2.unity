@@ -835,6 +835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car1
       objectReference: {fileID: 0}
+    - target: {fileID: 6234036589301209825, guid: 7e24be9f7a8fd8545acfd7a788d40b0b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6234036589301209854, guid: 7e24be9f7a8fd8545acfd7a788d40b0b, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1264,7 +1268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8407627987409713250, guid: 8b029c0d537839749842011cf070ce8c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37971067
+      value: -0.503
       objectReference: {fileID: 0}
     - target: {fileID: 8407627987409713250, guid: 8b029c0d537839749842011cf070ce8c, type: 3}
       propertyPath: m_LocalPosition.z
