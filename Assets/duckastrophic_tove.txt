@@ -7,5 +7,10 @@ Making the control-randomization work properly and not returning KeyCode.None as
 But I could also say that a lot more things were difficult, I got to try multiple things for the very first time. Such as lerping the camera movement, clamping it's position
 so it would stay inside the designed level with a background.
 
+In addition, making a groundCheck for the jumping movement turned out to be more difficult than we expected. At first we added a collider in the bottom of the playersprite, and if that collider was triggered
+it meant the player had reached the ground. But that gave the player the ability to doublejump if the player reached the edge of any object in the scene. So we changed it to a velocitycheck
+(if the velocity is zero, the player is grounded.), but the player's velocity is zero for a millisecond at the peak height, before the player starts falling down again. So it's not bulletproof,
+we'll continue looking for alternative ways to jump or groundCheck.
+
 What did I find easy:
 Almost nothing came "easy", the player's actions would've been easy if it wasn't for the interface system which I've never worked with before.
