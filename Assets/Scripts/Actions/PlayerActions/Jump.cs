@@ -12,7 +12,6 @@ public class Jump : IAction
         if (_player.isGrounded)
         {
             _player.rigidbody.AddForce(_player.transform.up * _player.jumpForce);
-            _player.isGrounded = false;
         }
     }
 }

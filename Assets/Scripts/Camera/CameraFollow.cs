@@ -48,11 +48,11 @@ public class CameraFollow : MonoBehaviour
 
     private void StartLerping()
     {
-        lerpTime = Time.time;
+        lerpTime = 1.5f;
         shouldLerp = true;
     }
 
-    public Vector3 Lerp(Vector3 start, Vector3 end, float lerpTime = 1)
+    public Vector3 Lerp(Vector3 start, Vector3 end, float lerpTime = 1.5f)
     {
         float timeSinceStarted = Time.deltaTime;
 

@@ -14,7 +14,7 @@ public abstract class Movement : IAction
 
         if (!player.isGrounded)
         {
-            movementSpeed = 0.3f;
+            movementSpeed = 0.8f;
         }
 
         player.FaceDirection = direction;
