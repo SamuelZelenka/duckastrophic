@@ -1,3 +1,4 @@
+using UnityEngine;
 public class Jump : IAction
 {
 
@@ -11,7 +12,7 @@ public class Jump : IAction
     {
         if (_player.isGrounded)
         {
-            _player.rigidbody.AddForce(_player.transform.up * _player.jumpForce);
+            _player.rigidbody.velocity = new Vector2(_player.rigidbody.velocity.x , _player.jumpForce) ;
         }
     }
 }

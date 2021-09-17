@@ -14,12 +14,19 @@ public abstract class Movement : IAction
 
         if (!player.isGrounded)
         {
-            movementSpeed = 0.8f;
+            movementSpeed = 8f;
+            if (player.rigidbody.velocity.x > player.maxVelocity)
+            {
+                movementSpeed = 0.2f;
+            }
         }
 
         player.FaceDirection = direction;
         player.animator.SetBool("Running", true);
-        player.rigidbody.velocity = player.rigidbody.velocity + Vector2.right * (float)direction * movementSpeed * Time.deltaTime;
+        Vector2 newVelocity = player.rigidbody.velocity + Vector2.right * (float)direction * movementSpeed * Time.deltaTime;
+        newVelocity = new Vector2(Mathf.Clamp(newVelocity.x, -player.maxVelocity, player.maxVelocity), player.rigidbody.velocity.y);
+        player.rigidbody.velocity = newVelocity;
+
     }
 }
 
