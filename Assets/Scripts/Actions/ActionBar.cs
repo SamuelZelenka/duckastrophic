@@ -31,7 +31,7 @@ public class ActionBar : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         GameSession.player.actionBar = this;
         GenerateActionSlots(ref GameSession.player.keyboardLayout);
