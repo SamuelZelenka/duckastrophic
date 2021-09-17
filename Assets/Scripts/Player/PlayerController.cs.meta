@@ -3,7 +3,15 @@ guid: d3908b8fbe0bab44f87f50ab9d0ff9b2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pickUpSound: {fileID: 8300000, guid: 3110bca724d58ee4381cebce3bb78e2c, type: 3}
+  - heldObject: {instanceID: 0}
+  - interactionController: {instanceID: 0}
+  - actionBar: {instanceID: 0}
+  - animator: {instanceID: 0}
+  - spriteRenderer: {instanceID: 0}
+  - rigidbody: {instanceID: 0}
+  - _hatHolder: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

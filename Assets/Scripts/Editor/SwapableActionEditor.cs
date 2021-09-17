@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine; //remove unused namespaces
 
 //add #if UNITYEDITOR stuffs
 
@@ -9,10 +8,8 @@ public class SwapableActionEditor : Editor
 {
     private SerializedProperty _actionIndex;
 
-    void OnEnable() // lambda operator
-    {
-        _actionIndex = serializedObject.FindProperty("actionIndex");
-    }
+    void OnEnable() => _actionIndex = serializedObject.FindProperty("actionIndex");
+    
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
