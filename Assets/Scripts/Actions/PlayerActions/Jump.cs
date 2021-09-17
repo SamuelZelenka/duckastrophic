@@ -1,17 +1,18 @@
-using UnityEngine;
-
 public class Jump : IAction
 {
+
+    protected PlayerController _player;
     public bool HoldKeyDown { get { return false; } }
-    public void Initiate() { }
+    public void Initiate(PlayerController player) 
+    {
+        _player = player;
+    }
     public void TriggerAction() 
     {
-        PlayerController player = PlayerComponentService<PlayerController>.instance;
-
-        if (player.isGrounded)
+        if (_player.isGrounded)
         {
-            PlayerComponentService<Rigidbody2D>.instance.AddForce(PlayerComponentService<Transform>.instance.up * player.jumpForce);
-            player.isGrounded = false;
+            _player.rigidbody.AddForce(_player.transform.up * _player.jumpForce);
+            _player.isGrounded = false;
         }
     }
 }

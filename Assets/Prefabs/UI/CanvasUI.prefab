@@ -763,8 +763,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8915714142951977016}
-        m_TargetAssemblyTypeName: InGameMenu, Assembly-CSharp
+      - m_Target: {fileID: 655704962}
+        m_TargetAssemblyTypeName: ButtonCommands, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -1237,8 +1237,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8915714142951977016}
-        m_TargetAssemblyTypeName: InGameMenu, Assembly-CSharp
+      - m_Target: {fileID: 655704962}
+        m_TargetAssemblyTypeName: ButtonCommands, Assembly-CSharp
         m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
@@ -1800,8 +1800,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8915714142951977016}
-        m_TargetAssemblyTypeName: InGameMenu, Assembly-CSharp
+      - m_Target: {fileID: 655704962}
+        m_TargetAssemblyTypeName: ButtonCommands, Assembly-CSharp
         m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:

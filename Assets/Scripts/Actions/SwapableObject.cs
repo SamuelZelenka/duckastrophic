@@ -9,7 +9,7 @@ public abstract class SwapableObject : MonoBehaviour, IInteractable
 
     protected virtual void Awake() => Highlight = GetComponent<InteractableMarker>();
 
-    public abstract void Interact();
+    public abstract void Interact(PlayerController player);
 
     public void EnableHighlight()
     {
@@ -19,7 +19,7 @@ public abstract class SwapableObject : MonoBehaviour, IInteractable
     }
     public void DisableHighlight()
     {
-        PlayerComponentService<PlayerController>.instance.interactionController.OnClosestInteractableChange -= DisableHighlight;
+        GameSession.player.interactionController.OnClosestInteractableChange -= DisableHighlight;
         Highlight.ReleaseMarkers();
         IsHighlighted = false;
     }

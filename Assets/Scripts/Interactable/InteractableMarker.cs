@@ -46,11 +46,9 @@ public class InteractableMarker : MonoBehaviour
         return new  GameObject().AddComponent<MarkerPool>();
     }
 
-    public void GetMarkers()
+    public void GetMarkers() //Re-work so condition is outsided of get method
     {
-        PlayerController player = PlayerComponentService<PlayerController>.instance;
-
-        if (player.interactionController.ClosestInteractable == interactable && !interactable.IsHighlighted)
+        if (GameSession.player.interactionController.ClosestInteractable == interactable && !interactable.IsHighlighted)
         {
             for (int i = 0; i < markerCount; i++)
             {

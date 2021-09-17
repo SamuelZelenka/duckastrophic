@@ -27,24 +27,16 @@ public class ActionBar : MonoBehaviour
                 _actionSlotIndex = actionSlots.Count - 1;
             }
 
-
             _actionSlotIndex = (value % _actionSlotCount + _actionSlotCount) % _actionSlotCount;
         }
     }
 
     private void Awake()
     {
-        PlayerComponentService<PlayerController>.instance.actionBar = this;
-        GenerateActionSlots(ref PlayerComponentService<PlayerController>.instance.keyboardLayout);
-        if (_actionSlotCount == 1)
-        {
-            actionSlots[0].actionCombo.Action = new MoveRight();
-        }
-        if (_actionSlotCount > 1)
-        {
-            actionSlots[0].actionCombo.Action = new MoveLeft();
-            actionSlots[1].actionCombo.Action = new MoveRight();
-        }
+        GameSession.player.actionBar = this;
+        GenerateActionSlots(ref GameSession.player.keyboardLayout);
+        actionSlots[0].actionCombo.Action = new MoveRight();
+        actionSlots[0].actionCombo.Action.Initiate(GameSession.player);
         actionSlots[0].highlight.enabled = true;
     }
 
@@ -53,7 +45,7 @@ public class ActionBar : MonoBehaviour
     public void SetKey(KeyCode key) => actionSlots[ActionSlotIndex].actionCombo.Key = key;
     public void SetAction(IAction action)
     {
-        action.Initiate();
+        action.Initiate(GameSession.player);
         actionSlots[ActionSlotIndex].actionCombo.Action = action;
     }
 
@@ -89,6 +81,10 @@ public class ActionBar : MonoBehaviour
         for (int keyCount = 1; keyCount < _actionSlotCount; keyCount++)
         {
             keyboardPositions.Add(GetRandomKeyPos(keyboardPositions[keyCount - 1].x + 1, _actionSlotCount, keyCount));
+            if (GameSession.player.keyboardLayout[keyboardPositions[keyboardPositions.Count - 1].x, keyboardPositions[keyboardPositions.Count - 1].y] == KeyCode.None)
+            {
+                Debug.Log(keyboardPositions[keyboardPositions.Count - 1].x + " poo " + keyboardPositions[keyboardPositions.Count - 1].y);
+            }
         }
 
         for (int i = 0; i < _actionSlotCount; i++)
@@ -98,7 +94,7 @@ public class ActionBar : MonoBehaviour
             actionSlots.Add(newSlot);
 
             newSlot.actionCombo = new ActionCombo(keyboardLayout[keyboardPositions[i].x, keyboardPositions[i].y], null, newSlot.OnValueChanged);
-            keyboardLayout[keyboardPositions[i].x, keyboardPositions[i].y] = KeyCode.None;
+            //keyboardLayout[keyboardPositions[i].x, keyboardPositions[i].y] = KeyCode.None;
 
             newSlot.OnValueChanged?.Invoke();
         }
@@ -106,7 +102,7 @@ public class ActionBar : MonoBehaviour
 
     private Vector2Int GetRandomKeyPos(int minXPos, int maxKeycount, int keyCount)
     {
-        const int MAX_KEYS_ROW_1 = 11, MAX_KEYS_ROW_2 = 9, MAX_KEYS_ROW_3 = 7;
+        const int MAX_KEYS_ROW_1 = 10, MAX_KEYS_ROW_2 = 9, MAX_KEYS_ROW_3 = 7;
 
         int layoutPosX = 0;
         int layoutPosY = 0;

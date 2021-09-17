@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97aeeeddbce540744812a5549375eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerCount: 6
   radius: 1
+  markerCount: 6
   posOffset: {x: 0, y: 0}
 --- !u!114 &4636907673577341941
 MonoBehaviour:
@@ -198,7 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1eb8a9e80cb6884289984afe4e36bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _JumpOnAwake: 0
   actionIndex: 0
   _actionIconRenderer: {fileID: 6664644259358747389}
 --- !u!61 &6169816725700842987

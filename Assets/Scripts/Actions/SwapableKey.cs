@@ -7,39 +7,22 @@ public class SwapableKey : SwapableObject
 
     protected void Start()
     {
-        PlayerController player = PlayerComponentService<PlayerController>.instance;
         KeyCode randomKey;
-        
         do
         {
             int randomX, randomY;
-            randomX = UnityEngine.Random.Range(0, player.keyboardLayout.GetLength(0));
-            randomY = UnityEngine.Random.Range(0, player.keyboardLayout.GetLength(1));
+            randomX = Random.Range(0, GameSession.player.keyboardLayout.GetLength(0));
+            randomY = Random.Range(0, GameSession.player.keyboardLayout.GetLength(1));
 
-            randomKey = player.keyboardLayout[randomX, randomY];
-            for (int i = 0; i < player.actionBar.actionSlots.Count; i++)
-            {
-                if (player.actionBar.actionSlots[i].actionCombo.Key == randomKey)
-                {
-                    randomKey = KeyCode.None;
-                }
-            }
-            if (randomKey != KeyCode.None)
-            {
-                player.keyboardLayout[randomX, randomY] = KeyCode.None;
-                break;
-            }
-
-
+            randomKey = GameSession.player.keyboardLayout[randomX, randomY];
         } while (randomKey == KeyCode.None);
+
 
         _key = randomKey;
         _keyText.text = _key.ToString();
     }
-    public override void Interact()
+    public override void Interact(PlayerController player)
     {
-        PlayerController player = PlayerComponentService<PlayerController>.instance;
-
         KeyCode newKey = player.actionBar.GetKey();
         player.actionBar.SetKey(_key);
         
