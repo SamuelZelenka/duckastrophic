@@ -1,0 +1,11 @@
+What have I been working on: My main responsibilities have been the different playeractions (movement, jump, dash, pick up, drop) and the camera system.
+But this project was mostly a unionized effort, we've been pair programming for most of the time and poking around a lot in eachother's scripts.
+So it's hard to say specifically what each of us have been working on.
+
+What did I find most difficult:
+Making the control-randomization work properly and not returning KeyCode.None as an input. This became a bigger issue the more polishing we tried.
+But I could also say that a lot more things were difficult, I got to try multiple things for the very first time. Such as lerping the camera movement, clamping it's position
+so it would stay inside the designed level with a background.
+
+What did I find easy:
+Almost nothing came "easy", the player's actions would've been easy if it wasn't for the interface system which I've never worked with before.
