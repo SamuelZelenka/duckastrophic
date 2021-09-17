@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(InteractableMarker))]
 public class InteractableMarkerEditor : Editor
 {
@@ -21,3 +23,4 @@ public class InteractableMarkerEditor : Editor
 
     }
 }
+#endif

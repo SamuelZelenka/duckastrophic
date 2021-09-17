@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-//add #if UNITYEDITOR stuffs
+#if UNITY_EDITOR
 
 [CustomEditor(typeof(SwapableAction)), CanEditMultipleObjects]
 public class SwapableActionEditor : Editor
@@ -28,3 +28,5 @@ public class SwapableActionEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
+#endif
