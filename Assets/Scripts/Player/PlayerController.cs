@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public float pickedUpOffsetX = 0f;
 
     public bool isGrounded;
-    public AudioClip duckQuack;
+    public AudioClip pickUpSound;
     public PickUpObject heldObject = null;
     public InteractionController interactionController;
     public ActionBar actionBar;

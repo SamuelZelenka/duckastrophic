@@ -170,10 +170,13 @@ MonoBehaviour:
   pickedUpOffsetY: 0.55
   pickedUpOffsetX: 0
   isGrounded: 0
-  duckQuack: {fileID: 8300000, guid: 3110bca724d58ee4381cebce3bb78e2c, type: 3}
+  pickUpSound: {fileID: 8300000, guid: 3110bca724d58ee4381cebce3bb78e2c, type: 3}
   heldObject: {fileID: 0}
   interactionController: {fileID: 8729758060774823853}
   actionBar: {fileID: 0}
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  rigidbody: {fileID: 0}
   _hatHolder: {fileID: 8729758061409327678}
 --- !u!50 &8729758061230351364
 Rigidbody2D:

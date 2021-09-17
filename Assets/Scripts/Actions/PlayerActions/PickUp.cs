@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic; //Remove unused namespaces
 using UnityEngine;
 
 public class PickUp : IAction
 {
-    public AudioClip duckQuack; // Make an Audio library to hold audioclips? Variable name can be improved on what kind of variable it is. 
-
     private PlayerController _player;
     
     public bool HoldKeyDown { get { return false; } }
@@ -17,11 +13,11 @@ public class PickUp : IAction
 
     public void TriggerAction()
     {
-        AudioManager.Instance.Play(duckQuack);
         if (_player.interactionController.ClosestInteractable != null &&
             _player.interactionController.ClosestInteractable.GetType() == typeof(PickUpObject) &&
             _player.heldObject != (PickUpObject)_player.interactionController.ClosestInteractable)
         {
+            AudioManager.Instance.Play(_player.pickUpSound);
             PickUpObject pickUpObject = (PickUpObject)_player.interactionController.ClosestInteractable;
             PickUpObject(pickUpObject);
             _player.interactionController.ClosestInteractable.Interact(GameSession.player);
